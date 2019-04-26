@@ -1,0 +1,40 @@
+{
+  "name": "ld44",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "homepage": "https://bigbuggames.github.io/ld44",
+  "dependencies": {
+    "howler": "2.1.1",
+    "lodash": "^4.17.11",
+    "react": "16.8.6",
+    "react-dom": "16.8.6",
+    "react-howler": "^3.7.4",
+    "react-scripts": "2.1.8",
+    "styled-components": "4.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.0",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-proposal-decorators": "^7.4.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-transform-computed-properties": "^7.2.0",
+    "@babel/preset-env": "^7.4.2",
+    "@babel/preset-react": "^7.0.0",
+    "clean-webpack-plugin": "^2.0.1",
+    "copy-webpack-plugin": "^5.0.2",
+    "directory-named-webpack-plugin": "^4.0.1",
+    "gh-pages": "^2.0.1",
+    "rimraf": "^2.6.3",
+    "spritesheet-js": "^1.2.6",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-hot-middleware": "^2.24.3",
+    "webpack-merge": "^4.2.1"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "build:dev": "webpack --config ./webpack/webpack.dev.js",
+    "deploy": "gh-pages -d dist"
+  }
+}
