@@ -64,7 +64,7 @@ class Game extends React.Component {
         }
 
         {this.state.gameState === Game.FATE && 
-          <Fate basket={this.state.basket} />
+          <Fate basket={this.state.basket} articles={this.state.articles} />
         }
       </div>
     )
