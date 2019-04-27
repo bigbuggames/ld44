@@ -6,27 +6,19 @@ import { getRandomInt } from 'utils/random';
 function getFateReport(articles, basket) {
   const fate = basket.map(id => articles.byId[id].fate);
 
-  // Recursive function to get random ending
-  function getRandomEndIndex(counter = 0) {
-    if (counter === fate.length - 1) { return; }
-
-    const index = getRandomInt(0, fate.length - 1);
-    if (typeof fate[index].end !== 'undefined') {
-      return index
-    }
-
-    selectEndIndex(counter + 1);
+  function getRandomEndFateIndex(possibleEndings) {
+    return getRandomInt(0, possibleEndings.length - 1);
   }
 
-  const selectedIndex = getRandomEndIndex();
+  const selectedIndex = getRandomEndFateIndex(fate.filter(item => item.end));
 
   // Arranging fates
   const orderedFate = [
     ...fate.slice(0, selectedIndex),
     ...fate.slice(selectedIndex + 1, fate.length),
     fate[selectedIndex]
-  ]
-
+  ];
+  
   // Returning array of the strings that need to be rendered
   return orderedFate.map((item, index, arr) => {
     if (index === arr.length - 1) {
