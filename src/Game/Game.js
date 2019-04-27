@@ -1,33 +1,53 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Keyboard from 'Engine/Keyboard';
-import AssetLoader from 'Engine/AssetLoader';
+import Home from './components/Home';
+import Form from './components/Form';
+import Shop from './components/Shop';
+import Fate from './components/Fate';
 
-import assets from 'constants/Assets';
+import articles from './constants/articles';
 
 class Game extends React.Component {
+  static HOME = 0;
+  static FORM = 1;
+  static SHOP = 2;
+  static FATE = 3;
+
+  state = {
+    gameState: Game.HOME,
+    articles,
+    basket: []
+  }
+
+  addArticleToBasket = () => {}
+  removeArticleFromBasket = () => {}
+
+  handleStateChange = (gameState) => () => this.setState({ gameState });
+
   render() {
     return (
-      <>
-        <AssetLoader assets={assets}>
-          {(loaded) => {
-            if (loaded === false) {
-              return <div>Loading...</div>
-            }
+      <div>
+        {this.state.gameState === Game.HOME && 
+          <Home handleNext={this.handleStateChange(Game.FORM)} />
+        }
 
-            return (
-              <Screen>
-                <Keyboard allowedKeys={['q', 'w', 'e', ' ']}>
-                  {pressedKeys => (
-                   
-                  )}
-                </Keyboard>
-              </Screen>
-            )
-          }}
-        </AssetLoader>
-      </>
+        {this.state.gameState === Game.FORM && 
+          <Form handleNext={this.handleStateChange(Game.SHOP)} />
+        }
+
+        {this.state.gameState === Game.SHOP &&
+          <Shop 
+            articles={this.state.articles}
+            basket={this.state.basket}
+            addArticleToBasket={this.addArticleToBasket}
+            removeArticleFromBasket={this.removeArticleFromBasket}
+            handleNext={this.handleStateChange(Game.FATE)} 
+          />
+        }
+
+        {this.state.gameState === Game.FATE && <Fate />}
+      </div>
     )
   }
 }

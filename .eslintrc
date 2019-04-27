@@ -18,7 +18,7 @@
     "no-unused-vars": 0,
     "no-undef": 0,
     "no-case-declarations": 0,
-    
+
     "arrow-spacing": "error",
     "spaced-comment": ["error", "always", {
       "line": {
