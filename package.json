@@ -9,6 +9,7 @@
     "lodash": "^4.17.11",
     "react": "16.8.6",
     "react-dom": "16.8.6",
+    "react-dropdown": "^1.6.4",
     "react-howler": "^3.7.4",
     "react-scripts": "2.1.8",
     "styled-components": "4.2.0"
@@ -23,6 +24,7 @@
     "@babel/preset-react": "^7.0.0",
     "clean-webpack-plugin": "^2.0.1",
     "copy-webpack-plugin": "^5.0.2",
+    "css-loader": "^2.1.1",
     "directory-named-webpack-plugin": "^4.0.1",
     "gh-pages": "^2.0.1",
     "rimraf": "^2.6.3",

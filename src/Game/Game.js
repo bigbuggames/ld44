@@ -2,15 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Home from './components/Home';
-import Form from './components/Form';
 import Shop from './components/Shop';
 import Fate from './components/Fate';
 
 import articles from './constants/articles';
 
 class Game extends React.Component {
-  static HOME = 0;
-  static FORM = 1;
+  static HOME = 1;
   static SHOP = 2;
   static FATE = 3;
 
@@ -28,28 +26,33 @@ class Game extends React.Component {
 
     this.setState({
       basket: [ ...this.state.basket, articleId ]
-    })
+    });
   }
 
   handleRemoveArticleFromBasket = (articleId) => () => {
     this.setState({
       basket: this.state.basket.filter(id => id !== articleId)
-    })
+    });
   }
 
   handleStateChange = (gameState) => () => this.setState({ gameState });
+  
+  handleSubmit = (data) => this.setState({
+    ...this.state,
+    playerInfo: {
+      ...this.state.playerInfo,
+      ...data 
+    }
+  });
 
   render() {
     return (
       <div>
         {this.state.gameState === Game.HOME && 
-          <Home handleNext={this.handleStateChange(Game.FORM)} />
-        }
-
-        {this.state.gameState === Game.FORM && 
-          <Form 
+          <Home
             handleNext={this.handleStateChange(Game.SHOP)}
-            onSubmit={this.handleSubmit}
+            playerInfo={this.state.playerInfo}
+            onChange={this.handleSubmit}
           />
         }
 

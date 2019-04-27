@@ -35,9 +35,8 @@ export default function Shop({
         basket={basket} 
         articles={articles} 
         onRemoveArticleFromBasket={onRemoveArticleFromBasket}
+        handleNext={handleNext}
       />
-
-      <Button onClick={handleNext}>Go to FATE</Button>
     </div>
   )
 }
