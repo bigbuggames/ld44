@@ -17,11 +17,25 @@ class Game extends React.Component {
   state = {
     gameState: Game.HOME,
     articles,
-    basket: []
+    basket: [],
+    playerInfo: {}
   }
 
-  addArticleToBasket = () => {}
-  removeArticleFromBasket = () => {}
+  handleAddArticleToBasket = (articleId) => () => {
+    if (this.state.basket.includes(articleId)) {
+      return;
+    }
+
+    this.setState({
+      basket: [ ...this.state.basket, articleId ]
+    })
+  }
+
+  handleRemoveArticleFromBasket = (articleId) => () => {
+    this.setState({
+      basket: this.state.basket.filter(id => id !== articleId)
+    })
+  }
 
   handleStateChange = (gameState) => () => this.setState({ gameState });
 
@@ -33,20 +47,25 @@ class Game extends React.Component {
         }
 
         {this.state.gameState === Game.FORM && 
-          <Form handleNext={this.handleStateChange(Game.SHOP)} />
+          <Form 
+            handleNext={this.handleStateChange(Game.SHOP)}
+            onSubmit={this.handleSubmit}
+          />
         }
 
         {this.state.gameState === Game.SHOP &&
           <Shop 
             articles={this.state.articles}
             basket={this.state.basket}
-            addArticleToBasket={this.addArticleToBasket}
-            removeArticleFromBasket={this.removeArticleFromBasket}
+            onAddArticleToBasket={this.handleAddArticleToBasket}
+            onRemoveArticleFromBasket={this.handleRemoveArticleFromBasket}
             handleNext={this.handleStateChange(Game.FATE)} 
           />
         }
 
-        {this.state.gameState === Game.FATE && <Fate />}
+        {this.state.gameState === Game.FATE && 
+          <Fate basket={this.state.basket} />
+        }
       </div>
     )
   }
