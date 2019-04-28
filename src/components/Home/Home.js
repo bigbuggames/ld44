@@ -114,7 +114,7 @@ export default function Home({
         }
       </FormContainer>
 
-      <Button onClick={handleNext}>SHOP NOW</Button>
+      {/* <Button onClick={handleNext}>SHOP NOW</Button> */}
     </HomeLayout>
   )
 }

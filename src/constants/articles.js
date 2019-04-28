@@ -4,7 +4,7 @@ export default {
       id: 8,  
       name: 'Ring of Arouse',
       description: "Doesn't matter if you are looking to spice things up with your couple or compensating for the secondary effects on Furtiva Lagrima. Ring of Arouse ensures an everlasting life of wildness with your loved one! No more headache, no more \"I am tired\", no excuses just passion! Just remember, once the ring is put on, it can't be removed. Approved by Beyoncé.",
-      image: 'images/furtiva_lagrima.png',
+      image: 'images/ring_of_arousal.png',
       price: {
         percentage: 5,
         years: 2
