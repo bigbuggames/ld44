@@ -21,13 +21,13 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
-class Game extends React.Component {
+class App extends React.Component {
   static HOME = 1;
   static SHOP = 2;
   static FATE = 3;
 
   state = {
-    gameState: Game.HOME,
+    gameState: App.HOME,
     articles,
     basket: [],
     playerInfo: {}
@@ -64,25 +64,25 @@ class Game extends React.Component {
       <>
         <GlobalStyle />
 
-        {this.state.gameState === Game.HOME && 
+        {this.state.gameState === App.HOME && 
           <Home
-            handleNext={this.handleStateChange(Game.SHOP)}
+            handleNext={this.handleStateChange(App.SHOP)}
             playerInfo={this.state.playerInfo}
             onChange={this.handleSubmit}
           />
         }
 
-        {this.state.gameState === Game.SHOP &&
+        {this.state.gameState === App.SHOP &&
           <Shop 
             articles={this.state.articles}
             basket={this.state.basket}
             onAddArticleToBasket={this.handleAddArticleToBasket}
             onRemoveArticleFromBasket={this.handleRemoveArticleFromBasket}
-            handleNext={this.handleStateChange(Game.FATE)} 
+            handleNext={this.handleStateChange(App.FATE)} 
           />
         }
 
-        {this.state.gameState === Game.FATE && 
+        {this.state.gameState === App.FATE && 
           <Fate basket={this.state.basket} articles={this.state.articles} />
         }
   
@@ -92,7 +92,7 @@ class Game extends React.Component {
 }
 
 const rootElement = document.getElementById('root');
-ReactDOM.render(<Game />, rootElement);
+ReactDOM.render(<App />, rootElement);
 
 if (process.env.NODE_ENV !== 'production') {
   // Enables hot module reloading
