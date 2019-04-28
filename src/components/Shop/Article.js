@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import { SmallButton } from '../Elements';
+import { SmallButton, TinyButton } from '../Elements';
 import Colors from 'constants/colors';
 
 const Container = styled.div`
@@ -34,7 +34,17 @@ const Info = styled.div`
 const Name = styled.div`
   font-size: 22px;
   font-weight: bold;
-  color: ${Colors.pink};
+  display: flex;
+  flex-direction: row;
+`;
+
+const OutOfOrder = styled(TinyButton)`
+  width: 120px;
+  height: 30px;
+  border-radius: 10px;
+  font-size: 0.6em;
+  margin-left: 20px;
+  cursor: default;
 `;
 
 const Description = styled.div`
@@ -72,19 +82,24 @@ function Article({ data, onAddArticleToBasket, disable }) {
 
       <Info>
         <div>
-          <Name>{data.name}</Name>
+          <Name>
+            {data.name}
+            {data.outOfOrder && <OutOfOrder>OUT OF STOCK</OutOfOrder>}
+          </Name>
           <Description>{data.description}</Description>
         </div>
 
         <HorizontalRow>
           <Price>Price: -{data.price.percentage}% lifespan, -{data.price.years} years</Price>
 
-          <SmallButton 
-            onClick={onAddArticleToBasket(data.id)} 
-            disable={disable}
-          >
-            BUY
-          </SmallButton>
+          {data.outOfOrder === undefined &&
+            <SmallButton 
+              onClick={onAddArticleToBasket(data.id)} 
+              disable={disable}
+            >
+              BUY
+            </SmallButton>
+          }
         </HorizontalRow>
       </Info>
     </Container>

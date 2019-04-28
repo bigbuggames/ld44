@@ -1,5 +1,16 @@
 export default {
   byId: {
+    8: {
+      id: 8,  
+      name: 'Ring of Arouse',
+      description: "Doesn't matter if you are looking to spice things up with your couple or compensating for the secondary effects on Furtiva Lagrima. Ring of Arouse ensures an everlasting life of wildness with your loved one! No more headache, no more \"I am tired\", no excuses just passion! Just remember, once the ring is put on, it can't be removed. Approved by Beyoncé.",
+      image: 'images/furtiva_lagrima.png',
+      price: {
+        percentage: 5,
+        years: 2
+      },
+      outOfOrder: true
+    },
     0: {
       id: 0,
       name: 'Aeon Collar (dog)',
@@ -121,7 +132,7 @@ export default {
       }
     }
   },
-  allIds: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+  allIds: [ 0, 1, 2, 3, 8, 4, 5, 6, 7 ]
 }
 
 /*

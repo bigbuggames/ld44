@@ -172,14 +172,14 @@ export default function Basket({
                 hoverColor={Colors.dangerHover}
                 onClick={handleNegativeCheckout}
               >
-                No
+                NO
               </SmallButton>
-              <SmallButton color={Colors.success} onClick={handleNext}>Yes</SmallButton>
+              <SmallButton color={Colors.success} onClick={handleNext}>YES</SmallButton>
             </DecisionContainer>
           </ConfirmationContainer>
         }
 
-        {!openConfirmation && <Button onClick={handleFalseCheckout}>Checkout</Button>}
+        {!openConfirmation && <Button onClick={handleFalseCheckout}>CHECKOUT</Button>}
 
       </FixedContainer>
     </ExpandingContainer>

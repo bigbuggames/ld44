@@ -11,9 +11,17 @@ const DropdownContainer = styled.div`
   display: flex;
   flex-direction: row;
 
-  .Dropdown-control {
-    margin: 20px;
+  .Dropdown-root {
+    margin-right: 20px;
   }
+
+  .Dropdown-root:last-child {
+    margin-right: 0;
+  } 
+`;
+
+const ShopButton = styled(Button)`
+  margin-top: 20px;
 `;
 
 function generateRangeArray(start, end) {
@@ -24,6 +32,41 @@ function generateRangeArray(start, end) {
 
   return list;
 }
+
+// const FormContainer = styled.div``;
+
+const FormContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const HomeLayout = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  & > img {
+    width: 400px;
+    height: 400px;
+    margin-top: 100px;
+  }
+
+  ${FormContainer} {
+    margin-top: 50px;
+  }
+`;
+
+const BusinessValuesList = styled.div`
+
+`;
+
+const BusinessValue = styled.div`
+
+`;
+
 
 export default function Home({
   handleNext,
@@ -39,39 +82,39 @@ export default function Home({
   }
 
   return (
-    <div>
-      <h1>HOME</h1>
+    <HomeLayout>
+      <img src='images/demon.png' />
 
-      <DropdownContainer>
+      <FormContainer>
+        <DropdownContainer>
+          <Dropdown
+            options={generateRangeArray(1, 31)} 
+            onChange={onSelect('day')} 
+            placeholder="Day"
+            value={playerInfo.day}
+          />
 
-        <Dropdown
-          options={generateRangeArray(1, 31)} 
-          onChange={onSelect('day')} 
-          placeholder="Day"
-          value={playerInfo.day}
-        />
+          <Dropdown 
+            options={text.months} 
+            onChange={onSelect('month')} 
+            placeholder="Month" 
+            value={playerInfo.month}
+          />
 
-        <Dropdown 
-          options={text.months} 
-          onChange={onSelect('month')} 
-          placeholder="Month" 
-          value={playerInfo.month}
-        />
+          <Dropdown 
+            options={generateRangeArray(1950, 2014)} 
+            onChange={onSelect('year')}
+            placeholder="Year" 
+            value={playerInfo.year}
+          />
+        </DropdownContainer>
 
-        <Dropdown 
-          options={generateRangeArray(1950, 2014)} 
-          onChange={onSelect('year')}
-          placeholder="Year" 
-          value={playerInfo.year}
-        />
+        {playerInfo.day && playerInfo.month && playerInfo.year &&
+          <ShopButton onClick={handleNext}>SHOP NOW</ShopButton>
+        }
+      </FormContainer>
 
-      </DropdownContainer>
-
-      {playerInfo.day && playerInfo.month && playerInfo.year &&
-        <Button onClick={handleNext}>Go to SHOP</Button>
-      }
-
-      <Button onClick={handleNext}>Go to SHOP</Button>
-    </div>
+      <Button onClick={handleNext}>SHOP NOW</Button>
+    </HomeLayout>
   )
 }
