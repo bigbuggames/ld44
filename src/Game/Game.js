@@ -1,11 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createGlobalStyle } from 'styled-components'
 
 import Home from './components/Home';
 import Shop from './components/Shop';
 import Fate from './components/Fate';
 
-import articles from './constants/articles';
+import articles from 'constants/articles';
+import Colors from 'constants/colors';
+
+const GlobalStyle = createGlobalStyle`
+  h1 {
+    font-family: 'Leckerli One', cursive;
+    font-size: 40px;
+    text-align: center;
+  }
+
+  html, body {
+    font-family: 'Laila', serif;
+  }
+`
 
 class Game extends React.Component {
   static HOME = 1;
@@ -47,7 +61,9 @@ class Game extends React.Component {
 
   render() {
     return (
-      <div>
+      <>
+        <GlobalStyle />
+
         {this.state.gameState === Game.HOME && 
           <Home
             handleNext={this.handleStateChange(Game.SHOP)}
@@ -69,7 +85,8 @@ class Game extends React.Component {
         {this.state.gameState === Game.FATE && 
           <Fate basket={this.state.basket} articles={this.state.articles} />
         }
-      </div>
+  
+      </>
     )
   }
 }

@@ -29,7 +29,7 @@ module.exports = {
       Engine: path.resolve(__dirname, "../src/Engine"),
       Game: path.resolve(__dirname, "../src/Game"),
       assets: path.resolve(__dirname, "../assets"),
-      constants: path.resolve(__dirname, "../src/constants"),
+      constants: path.resolve(__dirname, "../src/Game/constants"),
       utils: path.resolve(__dirname, "../src/utils"),
       components: path.resolve(__dirname, "../src/components")
     },
