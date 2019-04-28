@@ -1,9 +1,42 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Button } from '../Elements';
+import { Button, Header } from '../Elements';
+import Colors from 'constants/colors';
+
 import Basket from './Basket';
-import { Article } from './Article';
+import ArticleList from './Article';
+
+const ShopContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const SubContainer = styled.div`
+  display: flex;
+`;
+
+const Menu = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  margin-right: 50px;
+  border-right: 2px solid ${Colors.pink};
+  padding: 20px;
+  background-color: ${Colors.white};
+  min-width: 200px;
+
+  img {
+    position: fixed;
+    width: 200px;
+    height: 200px;
+  }
+
+  nav {
+    position: fixed;
+    top: 220px;
+  }
+`;
 
 export default function Shop({
   handleNext,
@@ -13,23 +46,32 @@ export default function Shop({
   onRemoveArticleFromBasket
 }) {
   return (
-    <div>
-      <h1>SHOP</h1>
+    <ShopContainer>
 
-      <h2>Articles</h2>
-      <ul>
-        {articles.allIds.map(id => {
-          const article = articles.byId[id];
-          const inBasket = basket.includes(id);
+      <SubContainer>
 
-          return (
-            <Article key={article.id}>
-              <span>{article.name}</span>
-              <Button onClick={onAddArticleToBasket(article.id)} disable={inBasket}>Buy</Button>
-            </Article>
-          )
-        })}
-      </ul>
+        <Menu>
+          <img src='https://dummyimage.com/200/ccb3cc/000000.png&text=Logo' />
+          <nav>
+            <ul>
+              <li>About us</li>
+              <li>FAQ</li>
+              <li>Shipping costs</li> 
+              <li>Refund policy</li>
+            </ul>
+          </nav>
+        </Menu>
+    
+        <div>
+          <h1>Articles</h1>
+          <ArticleList 
+            articles={articles} 
+            basket={basket}
+            onAddArticleToBasket={onAddArticleToBasket}
+          />
+        </div>
+
+      </SubContainer>
 
       <Basket 
         basket={basket} 
@@ -37,6 +79,6 @@ export default function Shop({
         onRemoveArticleFromBasket={onRemoveArticleFromBasket}
         handleNext={handleNext}
       />
-    </div>
+    </ShopContainer>
   )
 }

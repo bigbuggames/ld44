@@ -1,7 +1,82 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import styled, { css } from 'styled-components';
 
-import { Button } from '../Elements';
-import { Article } from './Article';
+import { Button, Header } from '../Elements';
+import Colors from 'constants/colors';
+
+const TinyButton = styled.div`
+  height: 15px;
+  padding: 2px;
+  border: 2px solid ${Colors.red};
+  border-radius: 5px;
+  color: red;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const DecisionButton = styled.div`
+  height: 50px;
+  width: 50px;
+  border: 2px solid ${props => props.color};
+  border-radius: 5px;
+  color: ${props => props.color};
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const BasketItem = styled.li`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  width: 200px;
+`;
+
+const BasketList = styled.ul`
+  padding-left: 0;
+`;
+
+const BasketPrice = styled.div`
+  margin-bottom: 20px;
+`;
+
+const ExpandingContainer = styled.div`
+  overflow: hidden;
+  margin-left: 20px;
+  background-color: white;
+  top: 0;
+  bottom: 0;
+  right: 0;
+
+  ${props => props.open 
+    ? css`
+      width: 400px;
+      padding: 20px;
+      border-left: 2px solid  ${Colors.pink};
+    ` 
+    : css`
+      width: 0;
+    `
+  }
+
+  transition: width 200ms ease-in;
+`;
+
+const FixedContainer = styled.div`
+  position: fixed;
+`;
+
+const ConfirmationContainer = styled.div``;
+
+const DecisionContainer = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+`;
 
 function getTotalPrice(basket, articles) {
   return basket.reduce((acc, id) => {
@@ -22,51 +97,65 @@ export default function Basket({
   onRemoveArticleFromBasket,
   handleNext
 }) {
+  const [openBasket, setOpenBasket] = useState(false);
   const [confirmed, setConfirmation] = useState(false);
-  const [open, setOpen] = useState(false);
+  const [openConfirmation, setOpenConfirmation] = useState(false);
 
   function handleFalseCheckout() {
-    setOpen(true);
+    setOpenConfirmation(true);
   }
 
   function handleNegativeCheckout() {
-    setOpen(false);
+    setOpenConfirmation(false);
     setConfirmation(false)
   }
 
   const price = getTotalPrice(basket, articles);
 
+  useEffect(() => {
+    if (basket.length > 0) {
+      setOpenBasket(true);
+    } else {
+      setOpenBasket(false);
+    }
+  });
+
   return (
-    <div>
-      <h2>Basket</h2>
+    <ExpandingContainer open={openBasket}>
+      <FixedContainer>
+        <h1>Basket</h1>
 
-      <ul>
-        {basket.map(id => {
-          const article = articles.byId[id]
-          return (
-            <Article key={article.id}>
-              <span>{article.name}</span>
-              <Button onClick={onRemoveArticleFromBasket(article.id)}>Remove</Button>
-            </Article>
-          )
-        })}
-      </ul>
+        <BasketList>
+          {basket.map(id => {
+            const article = articles.byId[id]
+            return (
+              <BasketItem key={article.id}>
+                <span>{article.name}</span>
+                <TinyButton onClick={onRemoveArticleFromBasket(article.id)}>X</TinyButton>
+              </BasketItem>
+            )
+          })}
+        </BasketList>
 
-      <div>
-        <div>TOTAL</div>
-        <div>percentage: {price.percentage}</div>
-        <div>years: {price.years}</div>
-      </div>
+        <BasketPrice>
+          <div>TOTAL</div>
+          <div>percentage: {price.percentage}</div>
+          <div>years: {price.years}</div>
+        </BasketPrice>
 
-      {open && !confirmed && 
-        <div>
-          <div>Are you sure?</div>
-          <Button onClick={handleNext}>Yes</Button>
-          <Button onClick={handleNegativeCheckout}>No</Button>
-        </div>
-      }
+        {openConfirmation && !confirmed && 
+          <ConfirmationContainer>
+            <div>Are you sure?</div>
+            <DecisionContainer>
+              <DecisionButton color='green' onClick={handleNext}>Yes</DecisionButton>
+              <DecisionButton color='red' onClick={handleNegativeCheckout}>No</DecisionButton>
+            </DecisionContainer>
+          </ConfirmationContainer>
+        }
 
-      <Button onClick={handleFalseCheckout}>Checkout</Button>
-  </div>
+        {!openConfirmation && <Button onClick={handleFalseCheckout}>Checkout</Button>}
+
+      </FixedContainer>
+    </ExpandingContainer>
   )
 }

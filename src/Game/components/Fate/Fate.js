@@ -3,8 +3,13 @@ import React from 'react';
 import texts from '../../constants/texts';
 import { getRandomInt } from 'utils/random';
 
-function getFateReport(articles, basket) {
+function getFateReport(articles, basket = []) {
   const fate = basket.map(id => articles.byId[id].fate);
+
+  // If we only select one article we return the solo fate
+  if (fate.length === 1) {
+    return fate[0].solo;
+  }
 
   function getRandomEndFateIndex(possibleEndings) {
     return getRandomInt(0, possibleEndings.length - 1);
