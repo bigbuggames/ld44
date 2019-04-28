@@ -1,62 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 
-import { Button, Header } from '../Elements';
+import { Button, SmallButton, TinyButton, Header } from '../Elements';
 import Colors from 'constants/colors';
-
-const TinyButton = styled.div`
-  height: 15px;
-  padding: 2px;
-  border: 2px solid ${Colors.red};
-  border-radius: 5px;
-  color: red;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const DecisionButton = styled.div`
-  height: 50px;
-  width: 50px;
-  border: 2px solid ${props => props.color};
-  border-radius: 5px;
-  color: ${props => props.color};
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const BasketItem = styled.li`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 10px;
-  width: 200px;
-`;
 
 const BasketList = styled.ul`
   padding-left: 0;
 `;
 
-const BasketPrice = styled.div`
-  margin-bottom: 20px;
-`;
-
 const ExpandingContainer = styled.div`
   overflow: hidden;
   margin-left: 20px;
-  background-color: white;
+  background-color: ${Colors.white};
   top: 0;
   bottom: 0;
   right: 0;
 
   ${props => props.open 
     ? css`
-      width: 400px;
+      width: 300px;
       padding: 20px;
-      border-left: 2px solid  ${Colors.pink};
+      border-left: 2px solid  ${Colors.black};
     ` 
     : css`
       width: 0;
@@ -68,14 +32,15 @@ const ExpandingContainer = styled.div`
 
 const FixedContainer = styled.div`
   position: fixed;
+  width: 280px;
 `;
 
 const ConfirmationContainer = styled.div``;
-
 const DecisionContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  margin-top: 20px;
 `;
 
 function getTotalPrice(basket, articles) {
@@ -90,6 +55,58 @@ function getTotalPrice(basket, articles) {
     years: 0
   })
 }
+
+const ItemContainer = styled.li`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  border-left: 5px solid ${Colors.black};
+  width: 100%;
+`;
+
+const ItemInfo = styled.div`
+  padding-left: 20px; 
+`;
+
+const Price = styled.div`
+  font-size: 12px;
+  color: ${Colors.grey400};
+`;
+
+function BasketItem({
+  article, 
+  onRemoveArticleFromBasket
+}) {
+  return (
+    <ItemContainer>
+      <ItemInfo>
+        <div>{article.name}</div>
+        <Price>Price: -{article.price.percentage}% lifespan, -{article.price.years} years</Price>
+      </ItemInfo>
+      <TinyButton onClick={onRemoveArticleFromBasket(article.id)}>X</TinyButton>
+    </ItemContainer>
+  );
+}
+
+const BasketPrice = styled.div`
+  margin: 40px 0 20px 0;
+  font-weight: bold;
+  font-size: 1em;
+`;
+
+const Cost = styled.div`
+  color: ${Colors.grey400};
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const Value = styled.span`
+  font-size: 1.4em;
+  color: ${Colors.black};
+`;
 
 export default function Basket({
   articles,
@@ -126,29 +143,33 @@ export default function Basket({
         <h1>Basket</h1>
 
         <BasketList>
-          {basket.map(id => {
-            const article = articles.byId[id]
-            return (
-              <BasketItem key={article.id}>
-                <span>{article.name}</span>
-                <TinyButton onClick={onRemoveArticleFromBasket(article.id)}>X</TinyButton>
-              </BasketItem>
-            )
-          })}
+          {basket.map((id, index) => (
+            <BasketItem 
+              key={`basket_item_${index}`}
+              article={articles.byId[id]} 
+              onRemoveArticleFromBasket={onRemoveArticleFromBasket} 
+            />
+          ))}
         </BasketList>
 
         <BasketPrice>
           <div>TOTAL</div>
-          <div>percentage: {price.percentage}</div>
-          <div>years: {price.years}</div>
+          <Cost>Lifespan reduction: <Value>{price.percentage}%</Value></Cost>
+          <Cost>Time lost: <Value>{price.years} years</Value></Cost>
         </BasketPrice>
 
         {openConfirmation && !confirmed && 
           <ConfirmationContainer>
             <div>Are you sure?</div>
             <DecisionContainer>
-              <DecisionButton color='green' onClick={handleNext}>Yes</DecisionButton>
-              <DecisionButton color='red' onClick={handleNegativeCheckout}>No</DecisionButton>
+              <SmallButton 
+                color={Colors.danger} 
+                hoverColor={Colors.dangerHover}
+                onClick={handleNegativeCheckout}
+              >
+                No
+              </SmallButton>
+              <SmallButton color={Colors.success} onClick={handleNext}>Yes</SmallButton>
             </DecisionContainer>
           </ConfirmationContainer>
         }
