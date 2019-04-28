@@ -6,34 +6,39 @@ import Colors from 'constants/colors';
 import { getRandomInt } from 'utils/random';
 
 function getFateReport(articles, basket = []) {
-  const fate = basket.map(id => articles.byId[id].fate);
+  const basketItems = basket.map(id => articles.byId[id]);
+  const fateList = basketItems.map(item => item.fate);
 
   // If we only select one article we return the solo fate
-  if (fate.length === 1) {
-    return [ fate[0].solo ];
+  if (fateList.length === 1) {
+    return [ fateList[0].solo ];
   }
 
-  function getRandomEndFateIndex(possibleEndings) {
-    return getRandomInt(0, possibleEndings.length - 1);
+  // Reorder dog/cat fate to the end
+  const lastFateWhitelist = [ 0, 1 ];
+
+  // Get normal fates excluding the ones that need to be last
+  const normalFatesWithLastExcluded = basketItems
+    .filter(item => !lastFateWhitelist.includes(item.id))
+    .map(item => item.fate.normal);
+
+  // Get last fates
+  const lastFates = basketItems
+    .filter(item => lastFateWhitelist.includes(item.id))
+    .map(item => item.fate.normal)
+
+  // Get ending fate
+  const endingFates = fateList.filter(item => item.end);
+  let ending;
+  if (endingFates.length > 0) {
+    ending = endingFates[0].end;
   }
 
-  const selectedIndex = getRandomEndFateIndex(fate.filter(item => item.end));
-
-  // Arranging fates
-  const orderedFate = [
-    ...fate.slice(0, selectedIndex),
-    ...fate.slice(selectedIndex + 1, fate.length),
-    fate[selectedIndex]
+  return [
+    ...normalFatesWithLastExcluded,
+    ending,
+    ...lastFates
   ];
-  
-  // Returning array of the strings that need to be rendered
-  return orderedFate.map((item, index, arr) => {
-    if (index === arr.length - 1 && item.end) {
-      return item.end;
-    } else {
-      return item.normal;
-    }
-  });
 }
 
 const Container = styled.div`
