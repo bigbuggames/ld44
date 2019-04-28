@@ -2,69 +2,79 @@ import styled, { css } from 'styled-components';
 
 import Colors from 'constants/colors'
 
-export const Button = styled.div`
-  width: 150px;
-  height: 50px;
-  border-radius: 10px;
+const CommonTheme = css`
   display: flex;
   justify-content: center;
   align-items: center;
-
-  border: 2px solid ${props => props.disable ? Colors.grey : Colors.pink};
+  background-color: ${Colors.white};
+  font-weight: bold;
 `;
 
-export const TinyButton = styled.div`
-  height: 15px;
-  padding: 2px;
-  border: 2px solid red;
-  border-radius: 5px;
-  color: red;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const DecisionButton = styled.div`
-  height: 50px;
-  width: 50px;
-  border: 2px solid ${props => props.color};
-  border-radius: 5px;
-  color: ${props => props.color};
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const SmallButton = styled.div`
-  width: 80px;
-  height: 40px;
-  border-radius: 10px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
+export const GenericButton = styled.div`
+  ${CommonTheme}
 
   ${props => props.disable
     ? css`
-      border: 2px solid grey;
-      color: grey;
+      border: 2px solid ${props => props.colors.disable};
+      color: ${props => props.colors.disable};
       cursor: not-allowed;
       &:hover {
-        background-color: #F2F2F2;
+        background-color: ${props => props.colors.disableHover};
       }
     `
     : css`
-      border: 2px solid forestgreen;
-      color: forestgreen;
+      cursor: pointer;
+      border: 2px solid ${props => props.colors.success};
+      color: ${props => props.colors.success};
       &:hover {
-        background-color: #E0F8E0;
+        background-color: ${props => props.colors.successHover};
       }
     `
   }
 `;
+
+GenericButton.defaultProps = {
+  disable: false,
+  colors: {
+    disable: Colors.grey400,
+    disableHover: Colors.grey200,
+    success: Colors.success,
+    successHover: Colors.successHover
+  }
+}
+
+export const Button = styled(GenericButton)`
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+`;
+
+export const SmallButton = styled(GenericButton)`
+  width: 80px;
+  height: 40px;
+  border-radius: 10px;
+
+  border: 2px solid ${props => props.color};
+  color: ${props => props.color};
+
+  &:hover {
+    background-color: ${props => props.hoverColor};
+  }
+`;
+
+export const TinyButton = styled(GenericButton)`
+  height: 15px;
+  padding: 2px;
+  border-radius: 5px;
+
+  border: 2px solid ${Colors.danger};
+  color:  ${Colors.danger};
+
+  &:hover {
+    background-color: ${Colors.white};
+  }
+`;
+
 
 export const Header = styled.div`
   font-family: 'Leckerli One', cursive;
