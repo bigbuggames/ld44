@@ -22,20 +22,27 @@ const Menu = styled.div`
 
   margin-right: 50px;
   border-right: 2px solid ${Colors.pink};
-  padding: 20px;
+  padding: 30px 20px 20px 20px;
   background-color: ${Colors.white};
-  min-width: 200px;
+  min-width: 300px;
 
   img {
     position: fixed;
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: 270px;
+    padding-left: 20px;
   }
 
   nav {
     position: fixed;
-    top: 220px;
+    top: 300px;
   }
+`;
+
+const MenuContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 export default function Shop({
@@ -51,7 +58,7 @@ export default function Shop({
       <SubContainer>
 
         <Menu>
-          <img src='https://dummyimage.com/200/ccb3cc/000000.png&text=Logo' />
+          <img src='images/demon_face.png' />
           <nav>
             <ul>
               <li>About us</li>

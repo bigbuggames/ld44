@@ -61,8 +61,13 @@ const ItemContainer = styled.li`
   justify-content: space-between;
   align-items: center;
   margin-top: 10px;
-  border-left: 5px solid ${Colors.black};
+  border-left: 5px solid ${Colors.danger};
   width: 100%;
+
+  img {
+    height: 25px;
+    width: 25px;
+  }
 `;
 
 const ItemInfo = styled.div`
@@ -84,7 +89,7 @@ function BasketItem({
         <div>{article.name}</div>
         <Price>Price: -{article.price.percentage}% lifespan, -{article.price.years} years</Price>
       </ItemInfo>
-      <TinyButton onClick={onRemoveArticleFromBasket(article.id)}>X</TinyButton>
+      <img src='images/pentagram.png' onClick={onRemoveArticleFromBasket(article.id)} />
     </ItemContainer>
   );
 }

@@ -13,7 +13,7 @@ export default {
   grey200: '#F2F2F2',
   grey400: 'grey',
 
-  danger: '#8E3A3A',
+  danger: '#952222',
   dangerHover: '#F8E0E6',
   success: '#82B82A',
   successHover: '#E0F8E0',

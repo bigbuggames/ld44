@@ -11,9 +11,9 @@ const Container = styled.div`
   padding: 20px;
   margin-top: 20px;
 
-  border-left: 10px solid ${Colors.black};
-  border-right: 10px solid ${Colors.black};
-  border-bottom: 1px solid ${Colors.black};
+  border-left: 10px solid ${Colors.danger};
+  border-right: 10px solid ${Colors.danger};
+  border-bottom: 1px solid ${Colors.danger};
   border-radius: 10px;
   background-color: ${Colors.white};
 

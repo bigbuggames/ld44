@@ -6,8 +6,8 @@ import Home from './components/Home';
 import Shop from './components/Shop';
 import Fate from './components/Fate';
 
-import articles from 'constants/articles';
-import Colors from 'constants/colors';
+import Articles from './constants/articles';
+import Colors from './constants/colors';
 
 const GlobalStyle = createGlobalStyle`
   h1 {
@@ -19,6 +19,10 @@ const GlobalStyle = createGlobalStyle`
   html, body {
     font-family: 'Laila', serif;
   }
+
+  nav > ul {
+    list-style: none;
+  }
 `
 
 class App extends React.Component {
@@ -28,7 +32,7 @@ class App extends React.Component {
 
   state = {
     gameState: App.HOME,
-    articles,
+    articles: Articles,
     basket: [],
     playerInfo: {}
   }
