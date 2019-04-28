@@ -80,7 +80,7 @@ export default {
       id: 5,
       name: "Powers' Mojo",
       description: "Have trouble meeting baes? Always felt like Awsin Powers shouldn't have got his mojo back because you are the one who should have it? Do you want to be the synonym for sex, drugs and Rock n' Roll? well stop asking questions, look no further!",
-      image: 'assets/foo.png',
+      image: 'images/powers_mojo.png',
       price: {
         percentage: 5,
         years: 2
@@ -95,7 +95,7 @@ export default {
       id: 6,
       name: "Coffee mug",
       description: "Looks like a regular mug, but the last half is always full of hot freshly made coffee, doesn't seem like a good idea? Think again. Disclaimer: If staying awake is what you're after we sell that too, look for Owl Droplets. This cup is for coffee lovers only!",
-      image: 'assets/foo.png',
+      image: 'images/coffee_mug.png',
       price: {
         percentage: 5,
         years: 2
