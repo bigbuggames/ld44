@@ -19,8 +19,8 @@ const Container = styled.div`
 
   img {
     margin-right: 50px;
-    height: 200px;
-    width: 200px;
+    min-height: 200px;
+    min-width: 200px;
     align-self: center;
   }
 `;
@@ -42,7 +42,7 @@ const Description = styled.div`
 `;
 
 const Price = styled.div`
-  color: gray;
+  color: ${Colors.grey400};
   padding-bottom: 5px;
   font-size: 18px;
 `;
