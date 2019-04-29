@@ -2,12 +2,15 @@ import React from 'react';
 import moment from 'moment';
 import styled from 'styled-components';
 
+import { getRandomInt } from 'utils/random'
+
 const MEAN_LIFE_EXPECTANCY = 100;
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-size: 1.5em;
 `;
 
 function shortenLifeExpectancy(birth, total) {
@@ -25,24 +28,21 @@ export default function Obituary({
   birthDate, 
   totalPrice 
 }) {
-  const { day, month, year } = birthDate;
-
-  /*
-    TODO: Fix how we store the actual data
-    day { value, label }
-    month: 'March',
-    year GOOD
-  */
+  const day = birthDate.day.value;
+  const month = birthDate.month.value;
+  const year = birthDate.year.value;
 
   const birth = moment().day(day).month(month).year(year);
-  const death = shortenLifeExpectancy(birth, totalPrice);
+  const death = shortenLifeExpectancy(birth, totalPrice)
+    .day(getRandomInt(0, 29))
+    .month(getRandomInt(0, 11));
 
   return (
     <Container>
       <h1>R.I.P</h1>
-      {birth.format('dddd, MMMM YYYY')}
+      {birth.format('dddd Do, MMMM YYYY')}
       {' - '}
-      {death.format('dddd, MMMM YYYY')}
+      {death.format('dddd Do, MMMM YYYY')}
       <div>Died at the age of {death.diff(birth, 'years')}.</div>
     </Container>
   );

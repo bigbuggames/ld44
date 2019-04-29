@@ -192,7 +192,7 @@ export default function Home({
           />
 
           <Dropdown 
-            options={generateRangeArray(1950, 2014)} 
+            options={generateRangeArray(1950, 2012).reverse()} 
             onChange={onSelect('year')}
             placeholder="Year" 
             value={playerInfo.year}
