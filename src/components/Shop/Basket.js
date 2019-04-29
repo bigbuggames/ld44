@@ -43,6 +43,7 @@ const DecisionContainer = styled.div`
   margin-top: 20px;
 `;
 
+// TODO: Totally a memoized selector candidate
 function getTotalPrice(basket, articles) {
   return basket.reduce((acc, id) => {
     const { price } = articles.byId[id];

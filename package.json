@@ -27,6 +27,7 @@
     "css-loader": "^2.1.1",
     "directory-named-webpack-plugin": "^4.0.1",
     "gh-pages": "^2.0.1",
+    "moment": "^2.24.0",
     "rimraf": "^2.6.3",
     "spritesheet-js": "^1.2.6",
     "webpack": "^4.29.6",

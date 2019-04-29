@@ -5,6 +5,8 @@ import Texts from 'constants/texts';
 import Colors from 'constants/colors';
 import { getRandomInt } from 'utils/random';
 
+import Obituary from './Obituary';
+
 function getFateReport(articles, basket = []) {
   const basketItems = basket.map(id => articles.byId[id]);
   const fateList = basketItems.map(item => item.fate);
@@ -39,6 +41,20 @@ function getFateReport(articles, basket = []) {
     ending,
     ...lastFates
   ];
+}
+
+// TODO: Totally a memoized selector candidate
+function getTotalPrice(basket, articles) {
+  return basket.reduce((acc, id) => {
+    const { price } = articles.byId[id];
+    return {
+      percentage: acc.percentage + price.percentage,
+      years:  acc.years + price.years
+    }
+  }, {
+    percentage: 0,
+    years: 0
+  })
 }
 
 const Container = styled.div`
@@ -89,16 +105,20 @@ const FateItem = styled.li`
 
 export default function Fate({
   articles,
-  basket
+  basket,
+  playerInfo
 }) {
   useEffect(() => {
     window.scroll(0, 0);
   })
 
+  const totalPrice = getTotalPrice(basket, articles);
+  console.log(totalPrice);
+  
   return (
     <Container>
       <CenterPanel>
-        <h1>R.I.P</h1>
+        <Obituary totalPrice={totalPrice} birthDate={playerInfo} />
         <FateList>
           {getFateReport(articles, basket).map((fate, index) => {
             return <FateItem key={index}>{fate}</FateItem>

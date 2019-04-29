@@ -87,7 +87,11 @@ class App extends React.Component {
         }
 
         {this.state.gameState === App.FATE && 
-          <Fate basket={this.state.basket} articles={this.state.articles} />
+          <Fate 
+            basket={this.state.basket} 
+            articles={this.state.articles}
+            playerInfo={this.state.playerInfo} 
+          />
         }
   
       </>
