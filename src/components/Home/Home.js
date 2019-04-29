@@ -5,6 +5,7 @@ import 'react-dropdown/style.css';
 
 import text from 'constants/texts';
 import BusinessValueList from 'constants/businessValues';
+import Colors from 'constants/colors';
 
 import { Button } from '../Elements';
 
@@ -67,7 +68,7 @@ const ValueName = styled.div`
 `;
 
 const ValueDescription = styled.div`
-
+  text-align: justify;
 `;
 
 const ValueLayout = styled.div`
