@@ -63,7 +63,7 @@ const HomeLayout = styled.div`
 const ValueName = styled.div`
   margin-bottom: 5px;
   font-size: 1.2em;
-  color: tomato;
+  color: ${Colors.danger};
 `;
 
 const ValueDescription = styled.div`
