@@ -1,6 +1,6 @@
 export default [
   {
-    id: 0
+    id: 0,
     title: "Free shipping",
     description: "Everywhere, on every item, and for everyone, no need for loyalty programs.",
     image: "images/free_shipping.png"

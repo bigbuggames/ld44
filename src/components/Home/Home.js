@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
-import text from '../../constants/texts';
+import text from 'constants/texts';
+import BusinessValueList from 'constants/businessValues';
 
 import { Button } from '../Elements';
 
@@ -51,7 +52,7 @@ const HomeLayout = styled.div`
   & > img {
     width: 400px;
     height: 400px;
-    margin-top: 100px;
+    margin-top: 20px;
   }
 
   ${FormContainer} {
@@ -59,13 +60,86 @@ const HomeLayout = styled.div`
   }
 `;
 
-const BusinessValuesList = styled.div`
+const ValueName = styled.div`
+  margin-bottom: 5px;
+  font-size: 1.2em;
+  color: tomato;
+`;
+
+const ValueDescription = styled.div`
 
 `;
 
-const BusinessValue = styled.div`
+const ValueLayout = styled.div`
+  display: flex;
+  align-items: center;
 
+  max-width: 500px;
+  padding: 20px;
+
+  img {
+    margin-right: 20px;
+    height: 100px;
+    width: 100px;
+  }
 `;
+
+function BusinessValue({ data }) {
+  return (
+    <ValueLayout>
+      <img src={data.image} alt={data.title} />
+      <div>
+        <ValueName>{data.title}</ValueName>
+        <ValueDescription>{data.description}</ValueDescription>
+      </div> 
+    </ValueLayout>
+  )
+}
+
+const ValuesList = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+
+  max-width: 800px;
+
+  @media(max-width: 500px) {
+    flex-direction: column;
+  }
+`;
+
+const Row = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const InvertedRow = styled.div`
+  ${ValueLayout} {
+    flex-direction: row-reverse;
+
+    img {
+      margin: 0 0 0 20px;
+    }
+  }
+`;
+
+function BusinessValuesGrid({
+  values
+}) {
+  return (
+    <ValuesList>
+      <Row>
+        <BusinessValue data={values[0]} />
+        <BusinessValue data={values[1]} />
+      </Row>
+
+      <InvertedRow>
+        <BusinessValue data={values[2]} />
+        <BusinessValue data={values[3]} />
+      </InvertedRow>
+    </ValuesList>
+  )
+}
 
 
 export default function Home({
@@ -84,6 +158,8 @@ export default function Home({
   return (
     <HomeLayout>
       <img src='images/demon.png' />
+
+      <BusinessValuesGrid values={BusinessValueList} />
 
       <FormContainer>
         <DropdownContainer>
