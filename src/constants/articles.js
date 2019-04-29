@@ -113,7 +113,7 @@ export default {
       },
       fate: {
         solo: "One day your life took a turn for the best, you acquired a magical coffee mug that simply made everyday a better day. Somehow that had a positive effect on your attitude that made life much much easier. And you probably got married, had kids, wealth and a good health I don't know, I don't care either, this was simply a good choice, the choice of the winners. You are a winner, praise the coffee and stuff...",
-        normal: "But even when your life was going to hell you could always come back to that excellent coffee mug and relax for a few seconds. The only good choice you made that day on XXXXXXXXXXXDevil's little item shopXXXXXXXXXXX",
+        normal: "But even when your life was going to hell you could always come back to that excellent coffee mug and relax for a few seconds. The only good choice you made that day on Luci's Little Trinkets",
         end: "The last days of your existence were so wrong that you turned to your coffee addiction, the coffee that mug made was so great that you felt like nothing mattered anymore. Then decided to end your life drawing yourself in a bathtub of coffee."
       }
     },
@@ -127,7 +127,7 @@ export default {
         years: 2
       },
       fate: {
-        solo: "Only getting some extra time felt like a good idea at the beginning, but as time went on you realized you would prefer to use that extra time in something else, so you soon came back to XXXXXXXThis shopXXXXXXX for more. What started as a safe reasonable choice, ended with the purchase of almost every item on the shop, killing you short after the check out, nevermind the age that the counter shows you right now!. How about that you greedy bastard, rejoice!",
+        solo: "Only getting some extra time felt like a good idea at the beginning, but as time went on you realized you would prefer to use that extra time in something else, so you soon came back to Luci's Little Trinkets for more. What started as a safe reasonable choice, ended with the purchase of almost every item on the shop, killing you short after the check out, nevermind the age that the counter shows you right now!. How about that you greedy bastard, rejoice!",
         normal: "Owl Droplets gave you more time on your daily basis, allowing you to catch up on all those Netflix shows everyone was watching, playing all games you didn't have time to play, and finishing personal projects. After a few weeks you realized you weren't keeping any memories of your day, your brain couldn't retain anymore and although you could try to sleep to fix what was wrong, you never could do more than lay waiting.",
       }
     },
