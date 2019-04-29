@@ -9,58 +9,6 @@ import Colors from 'constants/colors';
 
 import { Button } from '../Elements';
 
-const DropdownContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-
-  .Dropdown-root {
-    margin-right: 20px;
-  }
-
-  .Dropdown-root:last-child {
-    margin-right: 0;
-  } 
-`;
-
-const ShopButton = styled(Button)`
-  margin-top: 20px;
-`;
-
-function generateRangeArray(start, end) {
-  var list = [];
-  for (var i = start; i <= end; i++) {
-    list.push(i);
-  }
-
-  return list;
-}
-
-// const FormContainer = styled.div``;
-
-const FormContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-const HomeLayout = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  & > img {
-    width: 400px;
-    height: 400px;
-    margin-top: 20px;
-  }
-
-  ${FormContainer} {
-    margin-top: 50px;
-  }
-`;
-
 const ValueName = styled.div`
   margin-bottom: 5px;
   font-size: 1.2em;
@@ -122,26 +70,79 @@ const InvertedRow = styled.div`
       margin: 0 0 0 20px;
     }
   }
+
+  @media(max-width: 500px) {
+    ${ValueLayout} {
+      flex-direction: row;
+
+      img {
+        margin: 0 20px 0 0;
+      }
+    }
+  }
 `;
 
-function BusinessValuesGrid({
-  values
-}) {
-  return (
-    <ValuesList>
-      <Row>
-        <BusinessValue data={values[0]} />
-        <BusinessValue data={values[1]} />
-      </Row>
+const DropdownContainer = styled.div`
+  display: flex;
+  flex-direction: row;
 
-      <InvertedRow>
-        <BusinessValue data={values[2]} />
-        <BusinessValue data={values[3]} />
-      </InvertedRow>
-    </ValuesList>
-  )
+  .Dropdown-root {
+    margin-right: 20px;
+  }
+
+  .Dropdown-root:last-child {
+    margin-right: 0;
+  } 
+`;
+
+const ShopButton = styled(Button)`
+  margin-top: 20px;
+`;
+
+const FormContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @media(max-width: 500px) {
+    margin-bottom: 300px;
+  }
+`;
+
+const HomeLayout = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  & > img {
+    width: 200px;
+    height: 220px;
+    margin-top: 40px;
+  }
+
+  ${FormContainer} {
+    margin-top: 30px;
+  }
+`;
+
+const Title = styled.div`
+  font-family: 'Leckerli One', cursive;
+  font-size: 50px;
+  text-align: center;
+  color: ${Colors.danger};
+  margin-bottom: 20px;
+`;
+
+function generateRangeArray(start, end) {
+  var list = [];
+  for (var i = start; i <= end; i++) {
+    list.push(i);
+  }
+
+  return list;
 }
-
 
 export default function Home({
   handleNext,
@@ -158,9 +159,21 @@ export default function Home({
 
   return (
     <HomeLayout>
-      <img src='images/demon.png' />
+      <img src='images/demon_face.png' />
 
-      <BusinessValuesGrid values={BusinessValueList} />
+      <Title>Luci's Little Trinkets</Title>
+
+      <ValuesList>
+        <Row>
+          <BusinessValue data={BusinessValueList[0]} />
+          <BusinessValue data={BusinessValueList[1]} />
+        </Row>
+
+        <InvertedRow>
+          <BusinessValue data={BusinessValueList[2]} />
+          <BusinessValue data={BusinessValueList[3]} />
+        </InvertedRow>
+      </ValuesList>
 
       <FormContainer>
         <DropdownContainer>
