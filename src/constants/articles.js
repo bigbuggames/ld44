@@ -130,9 +130,24 @@ export default {
         solo: "Only getting some extra time felt like a good idea at the beginning, but as time went on you realized you would prefer to use that extra time in something else, so you soon came back to XXXXXXXThis shopXXXXXXX for more. What started as a safe reasonable choice, ended with the purchase of almost every item on the shop, killing you short after the check out, nevermind the age that the counter shows you right now!. How about that you greedy bastard, rejoice!",
         normal: "Owl Droplets gave you more time on your daily basis, allowing you to catch up on all those Netflix shows everyone was watching, playing all games you didn't have time to play, and finishing personal projects. After a few weeks you realized you weren't keeping any memories of your day, your brain couldn't retain anymore and although you could try to sleep to fix what was wrong, you never could do more than lay waiting.",
       }
+    },
+    9: {
+      id: 9,
+      name: "Toughskin pipe",
+      description: "Never again worry about getting injured with Toughskin pipe, forget about cutting your finger, getting shot or ran over by a car, looking both ways when crossing a street is for normies. Now you can become your own armour just by smoking the contents of this pipe (one use only), there's only one thing it can't protect you from: burns and fire, you know, what fire gives, fire can take away... Unintended side effects include getting high for a few minutes and in some cases severe nightmares.",
+      image: 'images/toughskin_pipe.png',
+      price: {
+        percentage: 5,
+        years: 2
+      },
+      fate: {
+        solo: "After purchasing Toughskin Pipe, you lived most of your life enjoying the commodities of being indestructible, no longer worried about getting hurt by chance and sometimes forcing the limits of your newly acquired skin. Nothing could ever harm you again, at least nothing from outside... About the nightmares, that was something else entirely, they started short and dull, nothing that could worry you, after all you couldn't be harmed and you knew it even inside your dreams. But as weeks went by, nightmares started popping more and more often, deep and intense, they were showing you layers of horror you never thought possible. Soon you started daydreaming, no matter what you did or where you went nightmares chased. Little by little you started to give in to terror, at first, fleeing from other people, later locking yourself up in small spaces, after a few months in your mind suicide was the only way out. Desperation drove you to jump off your window, to get hit by a train, you even tried shooting yourself in the head but you were found by authorities and locked before you could continue trying. You spent the rest of your life enduring nightmare after nightmare in a padded cell with no escape.",
+        normal: "You lived most of your life with the commodities of being indestructible, no longer worried about getting hurt by chance and sometimes forcing the limits of your newly acquired skin. Nothing could ever harm you again, at least nothing from outside... About the nightmares... that was something else entirely, they started short and dull, nothing that could worry you, after all you couldn't be harmed and you knew it even inside your dreams. But as weeks went by, nightmares started popping more and more often, deeper and more intense, they were showing you layers of horror you never thought possible. Soon you started daydreaming, no matter what you did or where you went nightmares chased.",
+        end: "The end of your journey happened when little by little you started to give in to your nightmares, at first, fleeing from other people, later locking yourself up in small spaces, after a few months you realized suicide was the only way out. Desperation drove you to jump off your window, to get hit by a train, you even tried shooting yourself in the head but you were found by authorities and locked before you could continue trying. You spent the rest of your life enduring nightmare after nightmare in a padded cell with no escape."
+      }
     }
   },
-  allIds: [ 0, 1, 2, 3, 8, 4, 5, 6, 7 ]
+  allIds: [ 0, 1, 2, 3, 8, 4, 5, 6, 7, 9 ]
 }
 
 /*
