@@ -1,29 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createGlobalStyle } from 'styled-components'
 
+import GlobalStyle from './GlobalStyle';
 import Home from './components/Home';
 import Shop from './components/Shop';
 import Fate from './components/Fate';
-
 import Articles from './constants/articles';
 import Colors from './constants/colors';
-
-const GlobalStyle = createGlobalStyle`
-  h1 {
-    font-family: 'Leckerli One', cursive;
-    font-size: 40px;
-    text-align: center;
-  }
-
-  html, body {
-    font-family: 'Laila', serif;
-  }
-
-  nav > ul {
-    list-style: none;
-  }
-`
 
 class App extends React.Component {
   static HOME = 1;
