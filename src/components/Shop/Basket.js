@@ -45,20 +45,6 @@ const DecisionContainer = styled.div`
   margin-top: 20px;
 `;
 
-// TODO: Totally a memoized selector candidate
-function getTotalPrice(basket, articles) {
-  return basket.reduce((acc, id) => {
-    const { price } = articles.byId[id];
-    return {
-      percentage: acc.percentage + price.percentage,
-      years:  acc.years + price.years
-    }
-  }, {
-    percentage: 0,
-    years: 0
-  })
-}
-
 const ItemContainer = styled.li`
   display: flex;
   justify-content: space-between;
@@ -122,7 +108,7 @@ export default function Basket({
   const [openBasket, setOpenBasket] = useState(false);
   const [confirmed, setConfirmation] = useState(false);
   const [openConfirmation, setOpenConfirmation] = useState(false);
-  const { articles, basket, removeArticleFromBasket } = useContext(GameContext);
+  const { articles, basket, removeArticleFromBasket, getTotalPrice } = useContext(GameContext);
 
   function handleFalseCheckout() {
     setOpenConfirmation(true);
@@ -133,7 +119,7 @@ export default function Basket({
     setConfirmation(false)
   }
 
-  const price = getTotalPrice(basket, articles);
+  const price = getTotalPrice();
 
   useEffect(() => {
     if (basket.length > 0) {

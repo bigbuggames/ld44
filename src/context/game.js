@@ -1,55 +1,66 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // TODO: We should get this values from the server
 import Articles from 'constants/articles';
 
 const GameContext = React.createContext({});
 
-// TODO: Use useState hook por global state
 // TODO: Use action form to modify state
 // TODO: Separate different actions into separate files (tbd)
 
-export class GameProvider extends React.Component {
-  state = {
+export function GameProvider(props) {
+  const [ state, setState ] = useState({
     articles: Articles,
     basket: [],
     playerInfo: {}
-  }
+  });
 
-  addArticleToBasket = (articleId) => {
-    if (this.state.basket.includes(articleId)) { return; }
+  function addArticleToBasket(articleId) {
+    if (state.basket.includes(articleId)) { return; }
 
-    this.setState({
-      ...this.state,
+    setState({
+      ...state,
       basket: [
-        ...this.state.basket,
+        ...state.basket,
         articleId
       ]
     });
   }
 
-  removeArticleFromBasket = (articleId) => {
-    this.setState({
-      ...this.state,
-      basket: this.state.basket.filter(id => id !== articleId)
+  function removeArticleFromBasket(articleId) {
+    setState({
+      ...state,
+      basket: state.basket.filter(id => id !== articleId)
     });
   }
 
-  actions = {
-    addArticleToBasket: this.addArticleToBasket,
-    removeArticleFromBasket: this.removeArticleFromBasket
+  function getTotalPrice() {
+    return state.basket.reduce((acc, id) => {
+      const { price } = state.articles.byId[id];
+      return {
+        percentage: acc.percentage + price.percentage,
+        years:  acc.years + price.years
+      }
+    }, {
+      percentage: 0,
+      years: 0
+    })
   }
 
-  render() {
-    return (
-      <GameContext.Provider value={{
-        ...this.state, 
-        ...this.actions
-      }}>
-        {this.props.children}
-      </GameContext.Provider>
-    )
+  const actions = {
+    addArticleToBasket,
+    removeArticleFromBasket,
+    getTotalPrice
   }
-};
+
+  return (
+    <GameContext.Provider value={{
+      ...state, 
+      ...actions
+    }}>
+      {props.children}
+    </GameContext.Provider>
+  );
+}
 
 export default GameContext;

@@ -44,20 +44,6 @@ function getFateReport(articles, basket = []) {
   ];
 }
 
-// TODO: Totally a memoized selector candidate
-function getTotalPrice(basket, articles) {
-  return basket.reduce((acc, id) => {
-    const { price } = articles.byId[id];
-    return {
-      percentage: acc.percentage + price.percentage,
-      years:  acc.years + price.years
-    }
-  }, {
-    percentage: 0,
-    years: 0
-  })
-}
-
 const Container = styled.div`
   position: relative;
   top: 0;
@@ -107,8 +93,8 @@ const FateItem = styled.li`
 export default function Fate({
   playerInfo
 }) {
-  const { articles, basket } = useContext(GameContext);
-  const totalPrice = getTotalPrice(basket, articles);
+  const { articles, basket, getTotalPrice } = useContext(GameContext);
+  const totalPrice = getTotalPrice();
 
   useEffect(() => {
     window.scroll(0, 0);
