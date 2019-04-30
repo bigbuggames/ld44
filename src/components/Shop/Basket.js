@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled, { css } from 'styled-components';
 
-import { Button, SmallButton, TinyButton, Header } from '../Elements';
+import GameContext from 'context/game';
 import Colors from 'constants/colors';
+
+import { Button, SmallButton, TinyButton, Header } from '../Elements';
 
 const BasketList = styled.ul`
   padding-left: 0;
@@ -90,7 +92,7 @@ function BasketItem({
         <div>{article.name}</div>
         <Price>Price: -{article.price.percentage}% lifespan, -{article.price.years} years</Price>
       </ItemInfo>
-      <img src='images/pentagram.png' onClick={onRemoveArticleFromBasket(article.id)} />
+      <img src='images/pentagram.png' onClick={onRemoveArticleFromBasket} />
     </ItemContainer>
   );
 }
@@ -115,14 +117,12 @@ const Value = styled.span`
 `;
 
 export default function Basket({
-  articles,
-  basket,
-  onRemoveArticleFromBasket,
   handleNext
 }) {
   const [openBasket, setOpenBasket] = useState(false);
   const [confirmed, setConfirmation] = useState(false);
   const [openConfirmation, setOpenConfirmation] = useState(false);
+  const { articles, basket, removeArticleFromBasket } = useContext(GameContext);
 
   function handleFalseCheckout() {
     setOpenConfirmation(true);
@@ -153,7 +153,7 @@ export default function Basket({
             <BasketItem 
               key={`basket_item_${index}`}
               article={articles.byId[id]} 
-              onRemoveArticleFromBasket={onRemoveArticleFromBasket} 
+              onRemoveArticleFromBasket={() => removeArticleFromBasket(id)} 
             />
           ))}
         </BasketList>

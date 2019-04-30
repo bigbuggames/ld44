@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled, { css } from 'styled-components';
+
+import GameContext from 'context/game';
 
 import { SmallButton, TinyButton } from '../Elements';
 import Colors from 'constants/colors';
@@ -75,7 +77,11 @@ const HorizontalRow = styled.div`
   }
 `;
 
-function Article({ data, onAddArticleToBasket, disable }) {
+function Article({ 
+  data, 
+  onAddArticleToBasket, 
+  disable 
+}) {
   return (
     <Container>
       <img src={data.image} />
@@ -94,7 +100,7 @@ function Article({ data, onAddArticleToBasket, disable }) {
 
           {data.outOfOrder === undefined &&
             <SmallButton 
-              onClick={onAddArticleToBasket(data.id)} 
+              onClick={onAddArticleToBasket} 
               disable={disable}
             >
               BUY
@@ -114,11 +120,9 @@ const ListContainer = styled.div`
   }
 `;
 
-export default function ArticleList({ 
-  articles, 
-  basket,
-  onAddArticleToBasket 
-}) {
+export default function ArticleList() {
+  const { articles, basket, addArticleToBasket } = useContext(GameContext);
+
   return (
     <ListContainer>
       {articles.allIds.map(id => {
@@ -127,7 +131,7 @@ export default function ArticleList({
           <Article 
             key={id}
             data={articles.byId[id]} 
-            onAddArticleToBasket={onAddArticleToBasket}
+            onAddArticleToBasket={() => addArticleToBasket(id)}
             disable={inBasket}
           />
         );

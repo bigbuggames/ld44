@@ -6,7 +6,7 @@ import Home from './components/Home';
 import Shop from './components/Shop';
 import Fate from './components/Fate';
 import Articles from './constants/articles';
-import Colors from './constants/colors';
+import { GameProvider } from './context/game';
 
 class App extends React.Component {
   static HOME = 1;
@@ -15,25 +15,7 @@ class App extends React.Component {
 
   state = {
     gameState: App.HOME,
-    articles: Articles,
-    basket: [],
     playerInfo: {}
-  }
-
-  handleAddArticleToBasket = (articleId) => () => {
-    if (this.state.basket.includes(articleId)) {
-      return;
-    }
-
-    this.setState({
-      basket: [ ...this.state.basket, articleId ]
-    });
-  }
-
-  handleRemoveArticleFromBasket = (articleId) => () => {
-    this.setState({
-      basket: this.state.basket.filter(id => id !== articleId)
-    });
   }
 
   handleStateChange = (gameState) => () => this.setState({ gameState });
@@ -48,7 +30,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <>
+      <GameProvider>
         <GlobalStyle />
 
         {this.state.gameState === App.HOME && 
@@ -60,24 +42,11 @@ class App extends React.Component {
         }
 
         {this.state.gameState === App.SHOP &&
-          <Shop 
-            articles={this.state.articles}
-            basket={this.state.basket}
-            onAddArticleToBasket={this.handleAddArticleToBasket}
-            onRemoveArticleFromBasket={this.handleRemoveArticleFromBasket}
-            handleNext={this.handleStateChange(App.FATE)} 
-          />
+          <Shop handleNext={this.handleStateChange(App.FATE)} />
         }
 
-        {this.state.gameState === App.FATE && 
-          <Fate 
-            basket={this.state.basket} 
-            articles={this.state.articles}
-            playerInfo={this.state.playerInfo} 
-          />
-        }
-  
-      </>
+        {this.state.gameState === App.FATE && <Fate playerInfo={this.state.playerInfo} />}
+      </GameProvider>
     )
   }
 }

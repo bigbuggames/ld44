@@ -46,11 +46,7 @@ const MenuContent = styled.div`
 `;
 
 export default function Shop({
-  handleNext,
-  articles,
-  basket,
-  onAddArticleToBasket,
-  onRemoveArticleFromBasket
+  handleNext
 }) {
   return (
     <ShopContainer>
@@ -71,21 +67,12 @@ export default function Shop({
     
         <div>
           <h1>Articles</h1>
-          <ArticleList 
-            articles={articles} 
-            basket={basket}
-            onAddArticleToBasket={onAddArticleToBasket}
-          />
+          <ArticleList />
         </div>
 
       </SubContainer>
 
-      <Basket 
-        basket={basket} 
-        articles={articles} 
-        onRemoveArticleFromBasket={onRemoveArticleFromBasket}
-        handleNext={handleNext}
-      />
+      <Basket handleNext={handleNext} />
     </ShopContainer>
   )
 }

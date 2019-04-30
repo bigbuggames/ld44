@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 
-export default GlobalStyle = createGlobalStyle`
+export default createGlobalStyle`
   h1 {
     font-family: 'Leckerli One', cursive;
     font-size: 40px;
