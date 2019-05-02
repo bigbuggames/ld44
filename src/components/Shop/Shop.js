@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { Colors } from 'GlobalStyle';
 import { Button, Header } from '../Elements';
-import Colors from 'constants/colors';
 
 import Basket from './Basket';
 import ArticleList from './Article';

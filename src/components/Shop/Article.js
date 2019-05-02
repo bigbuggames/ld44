@@ -1,11 +1,11 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
+import { Colors } from 'GlobalStyle';
 import { useArticles } from 'context/articles';
 import { useBasket } from 'context/basket';
 
 import { SmallButton, TinyButton } from '../Elements';
-import Colors from 'constants/colors';
 
 const Container = styled.div`
   display: flex;

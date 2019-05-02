@@ -1,7 +1,11 @@
+## 1.2.1
+
+- *refactor* Change where the colors are defined
+
 ### 1.2.0
 
 - *feature* Change mean lifespan from 100 to 80
-- *feature* Improve global state sharing via context
+- *refactor* Improve global state sharing via context
 
 ### 1.1.0
 

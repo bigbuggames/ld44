@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import Colors from 'constants/colors'
+import { Colors } from 'GlobalStyle';
 
 const CommonTheme = css`
   display: flex;

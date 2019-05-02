@@ -26,6 +26,7 @@ module.exports = {
   resolve: {
     extensions: [".js"],
     alias: {
+      GlobalStyle: path.resolve(__dirname, "../src/GlobalStyle"),
       context: path.resolve(__dirname, "../src/context"),
       constants: path.resolve(__dirname, "../src/constants"),
       utils: path.resolve(__dirname, "../src/utils"),

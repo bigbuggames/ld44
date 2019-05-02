@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
+import { Colors } from 'GlobalStyle';
 import text from 'constants/texts';
 import BusinessValueList from 'constants/businessValues';
-import Colors from 'constants/colors';
 import { useProfile } from 'context/profile';
 import { generateRangeArray } from 'utils';
 

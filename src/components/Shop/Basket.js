@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 
+import { Colors } from 'GlobalStyle';
 import { useArticles } from 'context/articles';
 import { useBasket } from 'context/basket';
-import Colors from 'constants/colors';
 import { Button, SmallButton, TinyButton, Header } from '../Elements';
 
 const BasketList = styled.ul`
@@ -110,7 +110,7 @@ export default function Basket({
   const [openConfirmation, setOpenConfirmation] = useState(false);
   const { articles } = useArticles();
   const { basket, removeFromBasket, getTotalPrice } = useBasket();
-  
+
   const price = getTotalPrice(articles);
 
   function handleFalseCheckout() {
