@@ -2,11 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import GlobalStyle from './GlobalStyle';
-import Home from './components/Home';
-import Shop from './components/Shop';
-import Fate from './components/Fate';
-import Articles from './constants/articles';
-import { GameProvider } from './context/game';
+import Home from 'components/Home';
+import Shop from 'components/Shop';
+import Fate from 'components/Fate';
+import Articles from 'constants/articles';
+import { ArticlesProvider } from 'context/articles';
+import { BasketProvider } from 'context/basket';
+import { ProfileProvider } from 'context/profile';
 
 class App extends React.Component {
   static HOME = 1;
@@ -21,19 +23,25 @@ class App extends React.Component {
 
   render() {
     return (
-      <GameProvider>
+      <>
         <GlobalStyle />
 
-        {this.state.gameState === App.HOME && 
-          <Home handleNext={this.handleStateChange(App.SHOP)} />
-        }
+        <ArticlesProvider>
+          <BasketProvider>
+            <ProfileProvider>
+              {this.state.gameState === App.HOME && 
+                <Home handleNext={this.handleStateChange(App.SHOP)} />
+              }
 
-        {this.state.gameState === App.SHOP &&
-          <Shop handleNext={this.handleStateChange(App.FATE)} />
-        }
+              {this.state.gameState === App.SHOP &&
+                <Shop handleNext={this.handleStateChange(App.FATE)} />
+              }
 
-        {this.state.gameState === App.FATE && <Fate />}
-      </GameProvider>
+              {this.state.gameState === App.FATE && <Fate />}
+            </ProfileProvider>
+          </BasketProvider>
+        </ArticlesProvider>
+      </>
     )
   }
 }

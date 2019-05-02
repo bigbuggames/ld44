@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
@@ -6,7 +6,7 @@ import 'react-dropdown/style.css';
 import text from 'constants/texts';
 import BusinessValueList from 'constants/businessValues';
 import Colors from 'constants/colors';
-import GameContext from 'context/game';
+import { useProfile } from 'context/profile';
 import { generateRangeArray } from 'utils';
 
 import { Button } from '../Elements';
@@ -144,11 +144,11 @@ const Title = styled.div`
 export default function Home({
   handleNext
 }) {
-  const { playerInfo, addPlayerInformation } = useContext(GameContext);
+  const { profile, addProfileData } = useProfile();
 
   function onSelect(key) {
     return function(value) {
-      addPlayerInformation({
+      addProfileData({
         [key]: value
       });
     }
@@ -179,25 +179,25 @@ export default function Home({
             options={generateRangeArray(1, 31)} 
             onChange={onSelect('day')} 
             placeholder="Day"
-            value={playerInfo.day}
+            value={profile.day}
           />
 
           <Dropdown 
             options={text.months} 
             onChange={onSelect('month')} 
             placeholder="Month" 
-            value={playerInfo.month}
+            value={profile.month}
           />
 
           <Dropdown 
             options={generateRangeArray(1950, 2012).reverse()} 
             onChange={onSelect('year')}
             placeholder="Year" 
-            value={playerInfo.year}
+            value={profile.year}
           />
         </DropdownContainer>
 
-        {playerInfo.day && playerInfo.month && playerInfo.year &&
+        {profile.day && profile.month && profile.year &&
           <ShopButton onClick={handleNext}>SHOP NOW</ShopButton>
         }
       </FormContainer>

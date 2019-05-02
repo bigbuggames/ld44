@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 
-import GameContext from 'context/game';
+import { useArticles } from 'context/articles';
+import { useBasket } from 'context/basket';
 import Colors from 'constants/colors';
-
 import { Button, SmallButton, TinyButton, Header } from '../Elements';
 
 const BasketList = styled.ul`
@@ -108,7 +108,10 @@ export default function Basket({
   const [openBasket, setOpenBasket] = useState(false);
   const [confirmed, setConfirmation] = useState(false);
   const [openConfirmation, setOpenConfirmation] = useState(false);
-  const { articles, basket, removeArticleFromBasket, getTotalPrice } = useContext(GameContext);
+  const { articles } = useArticles();
+  const { basket, removeFromBasket, getTotalPrice } = useBasket();
+  
+  const price = getTotalPrice(articles);
 
   function handleFalseCheckout() {
     setOpenConfirmation(true);
@@ -118,8 +121,6 @@ export default function Basket({
     setOpenConfirmation(false);
     setConfirmation(false)
   }
-
-  const price = getTotalPrice();
 
   useEffect(() => {
     if (basket.length > 0) {
@@ -139,7 +140,7 @@ export default function Basket({
             <BasketItem 
               key={`basket_item_${index}`}
               article={articles.byId[id]} 
-              onRemoveArticleFromBasket={() => removeArticleFromBasket(id)} 
+              onRemoveArticleFromBasket={() => removeFromBasket(id)} 
             />
           ))}
         </BasketList>

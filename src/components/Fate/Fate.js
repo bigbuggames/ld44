@@ -1,10 +1,13 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 
 import Texts from 'constants/texts';
 import Colors from 'constants/colors';
 import { getRandomInt } from 'utils';
-import GameContext from 'context/game';
+
+import { useArticles } from 'context/articles';
+import { useBasket } from 'context/basket';
+import { useProfile } from 'context/profile';
 
 import Obituary from './Obituary';
 
@@ -91,8 +94,9 @@ const FateItem = styled.li`
 `;
 
 export default function Fate() {
-  const { articles, basket, getTotalPrice, playerInfo } = useContext(GameContext);
-  const totalPrice = getTotalPrice();
+  const { articles } = useArticles();
+  const { basket, getTotalPrice } = useBasket();
+  const { profile } = useProfile();
 
   useEffect(() => {
     window.scroll(0, 0);
@@ -101,7 +105,7 @@ export default function Fate() {
   return (
     <Container>
       <CenterPanel>
-        <Obituary totalPrice={totalPrice} birthDate={playerInfo} />
+        <Obituary totalPrice={getTotalPrice(articles)} birthDate={profile} />
         <FateList>
           {getFateReport(articles, basket).map((fate, index) => {
             return <FateItem key={index}>{fate}</FateItem>

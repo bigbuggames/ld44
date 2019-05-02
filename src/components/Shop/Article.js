@@ -1,7 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
 
-import GameContext from 'context/game';
+import { useArticles } from 'context/articles';
+import { useBasket } from 'context/basket';
 
 import { SmallButton, TinyButton } from '../Elements';
 import Colors from 'constants/colors';
@@ -121,7 +122,8 @@ const ListContainer = styled.div`
 `;
 
 export default function ArticleList() {
-  const { articles, basket, addArticleToBasket } = useContext(GameContext);
+  const { basket, addToBasket } = useBasket();
+  const { articles } = useArticles();
 
   return (
     <ListContainer>
@@ -131,7 +133,7 @@ export default function ArticleList() {
           <Article 
             key={id}
             data={articles.byId[id]} 
-            onAddArticleToBasket={() => addArticleToBasket(id)}
+            onAddArticleToBasket={() => addToBasket(id)}
             disable={inBasket}
           />
         );
