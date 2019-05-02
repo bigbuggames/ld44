@@ -2,9 +2,9 @@ import React from 'react';
 import moment from 'moment';
 import styled from 'styled-components';
 
-import { getRandomInt } from 'utils/random'
+import { getRandomInt } from 'utils'
 
-const MEAN_LIFE_EXPECTANCY = 100;
+const MEAN_LIFE_EXPECTANCY = 80;
 
 const Container = styled.div`
   display: flex;

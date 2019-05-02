@@ -34,6 +34,16 @@ export function GameProvider(props) {
     });
   }
 
+  function addPlayerInformation(data) {
+    setState({
+      ...state,
+      playerInfo: {
+        ...state.playerInfo,
+        ...data 
+      }
+    });
+  }
+
   function getTotalPrice() {
     return state.basket.reduce((acc, id) => {
       const { price } = state.articles.byId[id];
@@ -50,6 +60,7 @@ export function GameProvider(props) {
   const actions = {
     addArticleToBasket,
     removeArticleFromBasket,
+    addPlayerInformation,
     getTotalPrice
   }
 

@@ -3,7 +3,7 @@ import styled, { css, keyframes } from 'styled-components';
 
 import Texts from 'constants/texts';
 import Colors from 'constants/colors';
-import { getRandomInt } from 'utils/random';
+import { getRandomInt } from 'utils';
 import GameContext from 'context/game';
 
 import Obituary from './Obituary';
@@ -90,10 +90,8 @@ const FateItem = styled.li`
   padding-top: 20px;
 `;
 
-export default function Fate({
-  playerInfo
-}) {
-  const { articles, basket, getTotalPrice } = useContext(GameContext);
+export default function Fate() {
+  const { articles, basket, getTotalPrice, playerInfo } = useContext(GameContext);
   const totalPrice = getTotalPrice();
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
@@ -6,6 +6,8 @@ import 'react-dropdown/style.css';
 import text from 'constants/texts';
 import BusinessValueList from 'constants/businessValues';
 import Colors from 'constants/colors';
+import GameContext from 'context/game';
+import { generateRangeArray } from 'utils';
 
 import { Button } from '../Elements';
 
@@ -139,23 +141,14 @@ const Title = styled.div`
   margin-bottom: 20px;
 `;
 
-function generateRangeArray(start, end) {
-  var list = [];
-  for (var i = start; i <= end; i++) {
-    list.push(i);
-  }
-
-  return list;
-}
-
 export default function Home({
-  handleNext,
-  onChange,
-  playerInfo
+  handleNext
 }) {
+  const { playerInfo, addPlayerInformation } = useContext(GameContext);
+
   function onSelect(key) {
     return function(value) {
-      onChange({
+      addPlayerInformation({
         [key]: value
       });
     }
@@ -208,8 +201,6 @@ export default function Home({
           <ShopButton onClick={handleNext}>SHOP NOW</ShopButton>
         }
       </FormContainer>
-
-      {/* <Button onClick={handleNext}>SHOP NOW</Button> */}
     </HomeLayout>
   )
 }

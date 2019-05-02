@@ -14,19 +14,10 @@ class App extends React.Component {
   static FATE = 3;
 
   state = {
-    gameState: App.HOME,
-    playerInfo: {}
+    gameState: App.HOME
   }
 
   handleStateChange = (gameState) => () => this.setState({ gameState });
-  
-  handleSubmit = (data) => this.setState({
-    ...this.state,
-    playerInfo: {
-      ...this.state.playerInfo,
-      ...data 
-    }
-  });
 
   render() {
     return (
@@ -34,18 +25,14 @@ class App extends React.Component {
         <GlobalStyle />
 
         {this.state.gameState === App.HOME && 
-          <Home
-            handleNext={this.handleStateChange(App.SHOP)}
-            playerInfo={this.state.playerInfo}
-            onChange={this.handleSubmit}
-          />
+          <Home handleNext={this.handleStateChange(App.SHOP)} />
         }
 
         {this.state.gameState === App.SHOP &&
           <Shop handleNext={this.handleStateChange(App.FATE)} />
         }
 
-        {this.state.gameState === App.FATE && <Fate playerInfo={this.state.playerInfo} />}
+        {this.state.gameState === App.FATE && <Fate />}
       </GameProvider>
     )
   }
