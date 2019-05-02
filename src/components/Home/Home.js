@@ -105,6 +105,10 @@ const FormContainer = styled.div`
   justify-content: center;
   align-items: center;
 
+  p {
+    color: ${Colors.danger};
+  }
+
   @media(max-width: 500px) {
     margin-bottom: 300px;
   }
@@ -123,7 +127,7 @@ const HomeLayout = styled.div`
   }
 
   ${FormContainer} {
-    margin-top: 30px;
+    margin-top: 10px;
   }
 `;
 
@@ -176,6 +180,7 @@ export default function Home({
       </ValuesList>
 
       <FormContainer>
+        <p>Select your birthdate:</p>
         <DropdownContainer>
           <Dropdown
             options={generateRangeArray(1, 31)} 
