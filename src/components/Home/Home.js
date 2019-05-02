@@ -124,7 +124,7 @@ const HomeLayout = styled.div`
 
   & > img {
     width: 200px;
-    height: 220px;
+    height: 200px;
     margin-top: 40px;
   }
 
@@ -156,7 +156,7 @@ export default function Home({
 
   return (
     <HomeLayout>
-      <img src='images/demon_face.png' />
+      <img src='images/demon_circle.png' />
 
       <Title>Luci's Little Trinkets</Title>
 

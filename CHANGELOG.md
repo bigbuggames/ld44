@@ -1,4 +1,9 @@
-## 1.2.1
+### 1.2.2
+
+- *feature* Change articles prices
+- *feature* Change home image
+
+### 1.2.1
 
 - *refactor* Change where the colors are defined
 

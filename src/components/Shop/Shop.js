@@ -28,14 +28,20 @@ const Menu = styled.div`
 
   img {
     position: fixed;
-    width: 250px;
-    height: 270px;
-    padding-left: 20px;
+    width: 200px;
+    height: 230px;
+    padding-left: 40px;
+  }
+
+  h2 {
+    position: fixed;
+    top: 250px;
+    left: 40px;
+    color: ${Colors.danger};
   }
 
   nav {
-    position: fixed;
-    top: 300px;
+    display: none;
   }
 `;
 
@@ -55,6 +61,7 @@ export default function Shop({
 
         <Menu>
           <img src='images/demon_face.png' />
+          <h2>Luci's Little Trinkets</h2>
           <nav>
             <ul>
               <li>About us</li>
