@@ -1,6 +1,7 @@
 ### 1.2.3
 
 - *bugfix* New cat's fate text
+- *bugfix* Fix wrong birth date in Fate screen
 
 ### 1.2.2
 
