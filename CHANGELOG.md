@@ -1,3 +1,7 @@
+### 1.2.3
+
+- *bugfix* New cat's fate text
+
 ### 1.2.2
 
 - *feature* Change articles prices

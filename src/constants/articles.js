@@ -38,7 +38,7 @@ export default {
       },
       fate: {
         solo: "After your death no one will ever remove your cat's collar, so it will roam the world sleeping on trees and not giving a fuck about anything until the sun engulfs Earth, damaging the collar enough to fall.",
-        normal: "After your death no one will ever remove your cat's collar, so it will roam the world looking for you until the sun engulfs Earth, damaging the collar enough to fall.",
+        normal: "After your death no one will ever remove your cat's collar, so it will roam the world sleeping on trees and not giving a fuck about anything until the sun engulfs Earth, damaging the collar enough to fall.",
       }
     },
     2: {
