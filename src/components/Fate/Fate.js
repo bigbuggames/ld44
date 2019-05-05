@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 
-import Texts from 'constants/texts';
 import { getRandomInt } from 'utils';
 import { Colors } from 'GlobalStyle';
 import { useArticles } from 'context/articles';

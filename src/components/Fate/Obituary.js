@@ -32,7 +32,7 @@ export default function Obituary({
   const month = birthDate.month.value;
   const year = birthDate.year.value;
 
-  const birth = moment(`${day} ${month} ${year}`, 'DD MM YYYY');
+  const birth = moment(`${day} ${month + 1} ${year}`, 'DD MM YYYY');
   const death = shortenLifeExpectancy(birth, totalPrice)
     .day(getRandomInt(0, 29))
     .month(getRandomInt(0, 11));

@@ -2,9 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
+import moment from 'moment';
+import get from 'lodash/get';
 
 import { Colors } from 'GlobalStyle';
-import text from 'constants/texts';
 import BusinessValueList from 'constants/businessValues';
 import { useProfile } from 'context/profile';
 import { generateRangeArray } from 'utils';
@@ -154,6 +155,29 @@ export default function Home({
     }
   }
 
+  const monthOptions = [
+    { value: 0, label: 'January', days: 31 },
+    { value: 1, label: 'February', days: 28 },
+    { value: 2, label: 'March', days: 31 },
+    { value: 3, label: 'April', days: 30 },
+    { value: 4, label: 'May', days: 30 },
+    { value: 5, label: 'June', days: 31 },
+    { value: 6, label: 'July', days: 30 },
+    { value: 7, label: 'August', days: 31 },
+    { value: 8, label: 'September', days: 30 },
+    { value: 9, label: 'October', days: 31 },
+    { value: 10, label: 'November', days: 30 },
+    { value: 11, label: 'December', days: 31 }
+  ];
+
+  function generateDayArrayByMonth(month = {}) {
+    return generateRangeArray(1, month.days || 31);
+  }
+
+  function isValidDay(day, month) {
+    // return day <= dayCountByMonth[month];
+  }
+
   return (
     <HomeLayout>
       <img src='images/demon_circle.png' />
@@ -176,14 +200,14 @@ export default function Home({
         <p>Select your birthdate:</p>
         <DropdownContainer>
           <Dropdown
-            options={generateRangeArray(1, 31)} 
+            options={generateDayArrayByMonth(profile.month)} 
             onChange={onSelect('day')} 
             placeholder="Day"
             value={profile.day}
           />
 
           <Dropdown 
-            options={text.months} 
+            options={monthOptions} 
             onChange={onSelect('month')} 
             placeholder="Month" 
             value={profile.month}

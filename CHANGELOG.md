@@ -1,6 +1,7 @@
 ### 1.2.4
 
-- *bugfix* Fix problem removing items from the basket
+- *bugfix* Fix removing items from the basket
+- *bugfix* Fix Obituary dates
 
 ### 1.2.3
 

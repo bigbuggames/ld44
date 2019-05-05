@@ -1,12 +1,11 @@
 {
   "name": "ld44",
-  "version": "1.2.1",
+  "version": "1.2.4",
   "description": "",
   "keywords": [],
   "homepage": "https://bigbuggames.github.io/ld44",
   "dependencies": {
     "howler": "2.1.1",
-    "lodash": "^4.17.11",
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-dropdown": "^1.6.4",
@@ -27,6 +26,7 @@
     "css-loader": "^2.1.1",
     "directory-named-webpack-plugin": "^4.0.1",
     "gh-pages": "^2.0.1",
+    "lodash": "^4.17.11",
     "moment": "^2.24.0",
     "rimraf": "^2.6.3",
     "spritesheet-js": "^1.2.6",
