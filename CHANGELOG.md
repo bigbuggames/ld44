@@ -1,3 +1,7 @@
+### 1.2.4
+
+- *bugfix* Fix problem removing items from the basket
+
 ### 1.2.3
 
 - *bugfix* New cat's fate text

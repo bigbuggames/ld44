@@ -109,7 +109,7 @@ export default function Basket({
   const [confirmed, setConfirmation] = useState(false);
   const [openConfirmation, setOpenConfirmation] = useState(false);
   const { articles } = useArticles();
-  const { basket, removeFromBasket, getTotalPrice } = useBasket();
+  const { basket, deleteFromBasket, getTotalPrice } = useBasket();
 
   const price = getTotalPrice(articles);
 
@@ -140,7 +140,7 @@ export default function Basket({
             <BasketItem 
               key={`basket_item_${index}`}
               article={articles.byId[id]} 
-              onRemoveArticleFromBasket={() => removeFromBasket(id)} 
+              onRemoveArticleFromBasket={() => deleteFromBasket(id)} 
             />
           ))}
         </BasketList>

@@ -31,10 +31,7 @@ function useBasket() {
   }
   
   function deleteFromBasket(articleId) {
-    setBasket([
-      ...basket,
-      basket.filter(id => id !== articleId)
-    ]);
+    setBasket(basket.filter(id => id !== articleId));
   }
 
   function getTotalPrice(articles) {
