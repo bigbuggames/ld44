@@ -1,5 +1,4 @@
-Luci's Little Trinkets
-======================
+# Luci's Little Trinkets
 
 TODO:
 
