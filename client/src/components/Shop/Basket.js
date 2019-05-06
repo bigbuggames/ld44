@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import styled, { css } from 'styled-components';
+import React, { useState, useEffect } from "react";
+import styled, { css } from "styled-components";
 
-import { Colors } from 'GlobalStyle';
-import { useArticles } from 'context/articles';
-import { useBasket } from 'context/basket';
-import { Button, SmallButton, TinyButton, Header } from '../Elements';
+import { Colors } from "GlobalStyle";
+import { useArticles } from "context/articles";
+import { useBasket } from "context/basket";
+import { Button, SmallButton, TinyButton, Header } from "../Elements";
 
 const BasketList = styled.ul`
   padding-left: 0;
@@ -18,16 +18,16 @@ const ExpandingContainer = styled.div`
   bottom: 0;
   right: 0;
 
-  ${props => props.open 
-    ? css`
-      width: 300px;
-      padding: 20px;
-      border-left: 2px solid  ${Colors.black};
-    ` 
-    : css`
-      width: 0;
-    `
-  }
+  ${props =>
+    props.open
+      ? css`
+          width: 300px;
+          padding: 20px;
+          border-left: 2px solid ${Colors.black};
+        `
+      : css`
+          width: 0;
+        `}
 
   transition: width 200ms ease-in;
 `;
@@ -60,7 +60,7 @@ const ItemContainer = styled.li`
 `;
 
 const ItemInfo = styled.div`
-  padding-left: 20px; 
+  padding-left: 20px;
 `;
 
 const Price = styled.div`
@@ -68,17 +68,17 @@ const Price = styled.div`
   color: ${Colors.grey400};
 `;
 
-function BasketItem({
-  article, 
-  onRemoveArticleFromBasket
-}) {
+function BasketItem({ article, onRemoveArticleFromBasket }) {
   return (
     <ItemContainer>
       <ItemInfo>
         <div>{article.name}</div>
-        <Price>Price: -{article.price.percentage}% lifespan, -{article.price.years} years</Price>
+        <Price>
+          Price: -{article.price.percentage}% lifespan, -{article.price.years}{" "}
+          years
+        </Price>
       </ItemInfo>
-      <img src='images/pentagram.png' onClick={onRemoveArticleFromBasket} />
+      <img src="images/pentagram.png" onClick={onRemoveArticleFromBasket} />
     </ItemContainer>
   );
 }
@@ -102,9 +102,7 @@ const Value = styled.span`
   color: ${Colors.black};
 `;
 
-export default function Basket({
-  handleNext
-}) {
+export default function Basket({ handleNext }) {
   const [openBasket, setOpenBasket] = useState(false);
   const [confirmed, setConfirmation] = useState(false);
   const [openConfirmation, setOpenConfirmation] = useState(false);
@@ -119,7 +117,7 @@ export default function Basket({
 
   function handleNegativeCheckout() {
     setOpenConfirmation(false);
-    setConfirmation(false)
+    setConfirmation(false);
   }
 
   useEffect(() => {
@@ -137,39 +135,46 @@ export default function Basket({
 
         <BasketList>
           {basket.map((id, index) => (
-            <BasketItem 
+            <BasketItem
               key={`basket_item_${index}`}
-              article={articles.byId[id]} 
-              onRemoveArticleFromBasket={() => deleteFromBasket(id)} 
+              article={articles.byId[id]}
+              onRemoveArticleFromBasket={() => deleteFromBasket(id)}
             />
           ))}
         </BasketList>
 
         <BasketPrice>
           <div>TOTAL</div>
-          <Cost>Lifespan reduction: <Value>{price.percentage}%</Value></Cost>
-          <Cost>Time lost: <Value>{price.years} years</Value></Cost>
+          <Cost>
+            Lifespan reduction: <Value>{price.percentage}%</Value>
+          </Cost>
+          <Cost>
+            Time lost: <Value>{price.years} years</Value>
+          </Cost>
         </BasketPrice>
 
-        {openConfirmation && !confirmed && 
+        {openConfirmation && !confirmed && (
           <ConfirmationContainer>
             <div>Are you sure?</div>
             <DecisionContainer>
-              <SmallButton 
-                color={Colors.danger} 
+              <SmallButton
+                color={Colors.danger}
                 hoverColor={Colors.dangerHover}
                 onClick={handleNegativeCheckout}
               >
                 NO
               </SmallButton>
-              <SmallButton color={Colors.success} onClick={handleNext}>YES</SmallButton>
+              <SmallButton color={Colors.success} onClick={handleNext}>
+                YES
+              </SmallButton>
             </DecisionContainer>
           </ConfirmationContainer>
-        }
+        )}
 
-        {!openConfirmation && <Button onClick={handleFalseCheckout}>CHECKOUT</Button>}
-
+        {!openConfirmation && (
+          <Button onClick={handleFalseCheckout}>CHECKOUT</Button>
+        )}
       </FixedContainer>
     </ExpandingContainer>
-  )
+  );
 }

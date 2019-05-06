@@ -1,16 +1,16 @@
-import React from 'react';
-import styled from 'styled-components';
-import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
-import moment from 'moment';
-import get from 'lodash/get';
+import React from "react";
+import styled from "styled-components";
+import Dropdown from "react-dropdown";
+import "react-dropdown/style.css";
+import moment from "moment";
+import get from "lodash/get";
 
-import { Colors } from 'GlobalStyle';
-import BusinessValueList from 'constants/businessValues';
-import { useProfile } from 'context/profile';
-import { generateRangeArray } from 'utils';
+import { Colors } from "GlobalStyle";
+import BusinessValueList from "constants/businessValues";
+import { useProfile } from "context/profile";
+import { generateRangeArray } from "utils";
 
-import { Button } from '../Elements';
+import { Button } from "../Elements";
 
 const ValueName = styled.div`
   margin-bottom: 5px;
@@ -43,9 +43,9 @@ function BusinessValue({ data }) {
       <div>
         <ValueName>{data.title}</ValueName>
         <ValueDescription>{data.description}</ValueDescription>
-      </div> 
+      </div>
     </ValueLayout>
-  )
+  );
 }
 
 const ValuesList = styled.div`
@@ -55,7 +55,7 @@ const ValuesList = styled.div`
 
   max-width: 800px;
 
-  @media(max-width: 500px) {
+  @media (max-width: 500px) {
     flex-direction: column;
   }
 `;
@@ -74,7 +74,7 @@ const InvertedRow = styled.div`
     }
   }
 
-  @media(max-width: 500px) {
+  @media (max-width: 500px) {
     ${ValueLayout} {
       flex-direction: row;
 
@@ -95,7 +95,7 @@ const DropdownContainer = styled.div`
 
   .Dropdown-root:last-child {
     margin-right: 0;
-  } 
+  }
 `;
 
 const ShopButton = styled(Button)`
@@ -112,7 +112,7 @@ const FormContainer = styled.div`
     color: ${Colors.danger};
   }
 
-  @media(max-width: 500px) {
+  @media (max-width: 500px) {
     margin-bottom: 300px;
   }
 `;
@@ -135,16 +135,14 @@ const HomeLayout = styled.div`
 `;
 
 const Title = styled.div`
-  font-family: 'Leckerli One', cursive;
+  font-family: "Leckerli One", cursive;
   font-size: 50px;
   text-align: center;
   color: ${Colors.danger};
   margin-bottom: 20px;
 `;
 
-export default function Home({
-  handleNext
-}) {
+export default function Home({ handleNext }) {
   const { profile, addProfileData } = useProfile();
 
   function onSelect(key) {
@@ -152,22 +150,22 @@ export default function Home({
       addProfileData({
         [key]: value
       });
-    }
+    };
   }
 
   const monthOptions = [
-    { value: 0, label: 'January', days: 31 },
-    { value: 1, label: 'February', days: 28 },
-    { value: 2, label: 'March', days: 31 },
-    { value: 3, label: 'April', days: 30 },
-    { value: 4, label: 'May', days: 30 },
-    { value: 5, label: 'June', days: 31 },
-    { value: 6, label: 'July', days: 30 },
-    { value: 7, label: 'August', days: 31 },
-    { value: 8, label: 'September', days: 30 },
-    { value: 9, label: 'October', days: 31 },
-    { value: 10, label: 'November', days: 30 },
-    { value: 11, label: 'December', days: 31 }
+    { value: 0, label: "January", days: 31 },
+    { value: 1, label: "February", days: 28 },
+    { value: 2, label: "March", days: 31 },
+    { value: 3, label: "April", days: 30 },
+    { value: 4, label: "May", days: 30 },
+    { value: 5, label: "June", days: 31 },
+    { value: 6, label: "July", days: 30 },
+    { value: 7, label: "August", days: 31 },
+    { value: 8, label: "September", days: 30 },
+    { value: 9, label: "October", days: 31 },
+    { value: 10, label: "November", days: 30 },
+    { value: 11, label: "December", days: 31 }
   ];
 
   function generateDayArrayByMonth(month = {}) {
@@ -180,7 +178,7 @@ export default function Home({
 
   return (
     <HomeLayout>
-      <img src='images/demon_circle.png' />
+      <img src="images/demon_circle.png" />
 
       <Title>Luci's Little Trinkets</Title>
 
@@ -200,31 +198,31 @@ export default function Home({
         <p>Select your birthdate:</p>
         <DropdownContainer>
           <Dropdown
-            options={generateDayArrayByMonth(profile.month)} 
-            onChange={onSelect('day')} 
+            options={generateDayArrayByMonth(profile.month)}
+            onChange={onSelect("day")}
             placeholder="Day"
             value={profile.day}
           />
 
-          <Dropdown 
-            options={monthOptions} 
-            onChange={onSelect('month')} 
-            placeholder="Month" 
+          <Dropdown
+            options={monthOptions}
+            onChange={onSelect("month")}
+            placeholder="Month"
             value={profile.month}
           />
 
-          <Dropdown 
-            options={generateRangeArray(1950, 2012).reverse()} 
-            onChange={onSelect('year')}
-            placeholder="Year" 
+          <Dropdown
+            options={generateRangeArray(1950, 2012).reverse()}
+            onChange={onSelect("year")}
+            placeholder="Year"
             value={profile.year}
           />
         </DropdownContainer>
 
-        {profile.day && profile.month && profile.year &&
+        {profile.day && profile.month && profile.year && (
           <ShopButton onClick={handleNext}>SHOP NOW</ShopButton>
-        }
+        )}
       </FormContainer>
     </HomeLayout>
-  )
+  );
 }

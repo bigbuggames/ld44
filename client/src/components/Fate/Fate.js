@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react';
-import styled, { css, keyframes } from 'styled-components';
+import React, { useEffect } from "react";
+import styled, { css, keyframes } from "styled-components";
 
-import { getRandomInt } from 'utils';
-import { Colors } from 'GlobalStyle';
-import { useArticles } from 'context/articles';
-import { useBasket } from 'context/basket';
-import { useProfile } from 'context/profile';
+import { getRandomInt } from "utils";
+import { Colors } from "GlobalStyle";
+import { useArticles } from "context/articles";
+import { useBasket } from "context/basket";
+import { useProfile } from "context/profile";
 
-import Obituary from './Obituary';
+import Obituary from "./Obituary";
 
 function getFateReport(articles, basket = []) {
   const basketItems = basket.map(id => articles.byId[id]);
@@ -15,11 +15,11 @@ function getFateReport(articles, basket = []) {
 
   // If we only select one article we return the solo fate
   if (fateList.length === 1) {
-    return [ fateList[0].solo ];
+    return [fateList[0].solo];
   }
 
   // Reorder dog/cat fate to the end
-  const lastFateWhitelist = [ 0, 1 ];
+  const lastFateWhitelist = [0, 1];
 
   // Get normal fates excluding the ones that need to be last
   const normalFatesWithLastExcluded = basketItems
@@ -29,7 +29,7 @@ function getFateReport(articles, basket = []) {
   // Get last fates
   const lastFates = basketItems
     .filter(item => lastFateWhitelist.includes(item.id))
-    .map(item => item.fate.normal)
+    .map(item => item.fate.normal);
 
   // Get ending fate
   const endingFates = fateList.filter(item => item.end);
@@ -38,11 +38,7 @@ function getFateReport(articles, basket = []) {
     ending = endingFates[0].end;
   }
 
-  return [
-    ...normalFatesWithLastExcluded,
-    ending,
-    ...lastFates
-  ];
+  return [...normalFatesWithLastExcluded, ending, ...lastFates];
 }
 
 const Container = styled.div`
@@ -52,7 +48,7 @@ const Container = styled.div`
   left: 0;
   right: 0;
   min-height: 100vh;
-  z-index : 1;
+  z-index: 1;
 
   display: flex;
   justify-content: center;
@@ -98,18 +94,18 @@ export default function Fate() {
 
   useEffect(() => {
     window.scroll(0, 0);
-  })
-  
+  });
+
   return (
     <Container>
       <CenterPanel>
         <Obituary totalPrice={getTotalPrice(articles)} birthDate={profile} />
         <FateList>
           {getFateReport(articles, basket).map((fate, index) => {
-            return <FateItem key={index}>{fate}</FateItem>
+            return <FateItem key={index}>{fate}</FateItem>;
           })}
         </FateList>
       </CenterPanel>
     </Container>
-  )
+  );
 }

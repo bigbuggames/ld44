@@ -1,11 +1,11 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-import { Colors } from 'GlobalStyle';
-import { Button, Header } from '../Elements';
+import { Colors } from "GlobalStyle";
+import { Button, Header } from "../Elements";
 
-import Basket from './Basket';
-import ArticleList from './Article';
+import Basket from "./Basket";
+import ArticleList from "./Article";
 
 const ShopContainer = styled.div`
   display: flex;
@@ -51,35 +51,30 @@ const MenuContent = styled.div`
   justify-content: center;
 `;
 
-export default function Shop({
-  handleNext
-}) {
+export default function Shop({ handleNext }) {
   return (
     <ShopContainer>
-
       <SubContainer>
-
         <Menu>
-          <img src='images/demon_face.png' />
+          <img src="images/demon_face.png" />
           <h2>Luci's Little Trinkets</h2>
           <nav>
             <ul>
               <li>About us</li>
               <li>FAQ</li>
-              <li>Shipping costs</li> 
+              <li>Shipping costs</li>
               <li>Refund policy</li>
             </ul>
           </nav>
         </Menu>
-    
+
         <div>
           <h1>Articles</h1>
           <ArticleList />
         </div>
-
       </SubContainer>
 
       <Basket handleNext={handleNext} />
     </ShopContainer>
-  )
+  );
 }

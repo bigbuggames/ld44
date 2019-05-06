@@ -1,6 +1,6 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 
-import { Colors } from 'GlobalStyle';
+import { Colors } from "GlobalStyle";
 
 const CommonTheme = css`
   display: flex;
@@ -13,24 +13,24 @@ const CommonTheme = css`
 export const GenericButton = styled.div`
   ${CommonTheme}
 
-  ${props => props.disable
-    ? css`
-      border: 2px solid ${props => props.colors.disable};
-      color: ${props => props.colors.disable};
-      cursor: not-allowed;
-      &:hover {
-        background-color: ${props => props.colors.disableHover};
-      }
-    `
-    : css`
-      cursor: pointer;
-      border: 2px solid ${props => props.colors.success};
-      color: ${props => props.colors.success};
-      &:hover {
-        background-color: ${props => props.colors.successHover};
-      }
-    `
-  }
+  ${props =>
+    props.disable
+      ? css`
+          border: 2px solid ${props => props.colors.disable};
+          color: ${props => props.colors.disable};
+          cursor: not-allowed;
+          &:hover {
+            background-color: ${props => props.colors.disableHover};
+          }
+        `
+      : css`
+          cursor: pointer;
+          border: 2px solid ${props => props.colors.success};
+          color: ${props => props.colors.success};
+          &:hover {
+            background-color: ${props => props.colors.successHover};
+          }
+        `}
 `;
 
 GenericButton.defaultProps = {
@@ -41,7 +41,7 @@ GenericButton.defaultProps = {
     success: Colors.success,
     successHover: Colors.successHover
   }
-}
+};
 
 export const Button = styled(GenericButton)`
   width: 100%;
@@ -68,22 +68,21 @@ export const TinyButton = styled(GenericButton)`
   border-radius: 5px;
 
   border: 2px solid ${Colors.danger};
-  color:  ${Colors.danger};
+  color: ${Colors.danger};
 
   &:hover {
     background-color: ${Colors.white};
   }
 `;
 
-
 export const Header = styled.div`
-  font-family: 'Leckerli One', cursive;
-  ${props => props.size === 'lg'
-    ? css`
-      font-size: 30px;
-    `
-    : css`
-      font-size: 20px;
-    `
-  };
+  font-family: "Leckerli One", cursive;
+  ${props =>
+    props.size === "lg"
+      ? css`
+          font-size: 30px;
+        `
+      : css`
+          font-size: 20px;
+        `};
 `;

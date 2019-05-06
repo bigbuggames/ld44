@@ -4,20 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prettier:all": "prettier es5 --write '**/*.js'"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/bigbuggames/ld44.git"
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/bigbuggames/ld44/issues"
-  },
-  "homepage": "https://github.com/bigbuggames/ld44#readme",
   "devDependencies": {
-    "jest": "^24.8.0"
+    "husky": "^2.2.0",
+    "jest": "^24.8.0",
+    "prettier": "1.17.0",
+    "pretty-quick": "^1.10.0"
   }
 }

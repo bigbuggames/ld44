@@ -1,11 +1,11 @@
-import React from 'react';
-import styled, { css } from 'styled-components';
+import React from "react";
+import styled, { css } from "styled-components";
 
-import { Colors } from 'GlobalStyle';
-import { useArticles } from 'context/articles';
-import { useBasket } from 'context/basket';
+import { Colors } from "GlobalStyle";
+import { useArticles } from "context/articles";
+import { useBasket } from "context/basket";
 
-import { SmallButton, TinyButton } from '../Elements';
+import { SmallButton, TinyButton } from "../Elements";
 
 const Container = styled.div`
   display: flex;
@@ -78,11 +78,7 @@ const HorizontalRow = styled.div`
   }
 `;
 
-function Article({ 
-  data, 
-  onAddArticleToBasket, 
-  disable 
-}) {
+function Article({ data, onAddArticleToBasket, disable }) {
   return (
     <Container>
       <img src={data.image} />
@@ -97,16 +93,15 @@ function Article({
         </div>
 
         <HorizontalRow>
-          <Price>Price: -{data.price.percentage}% lifespan, -{data.price.years} years</Price>
+          <Price>
+            Price: -{data.price.percentage}% lifespan, -{data.price.years} years
+          </Price>
 
-          {data.outOfOrder === undefined &&
-            <SmallButton 
-              onClick={onAddArticleToBasket} 
-              disable={disable}
-            >
+          {data.outOfOrder === undefined && (
+            <SmallButton onClick={onAddArticleToBasket} disable={disable}>
               BUY
             </SmallButton>
-          }
+          )}
         </HorizontalRow>
       </Info>
     </Container>
@@ -130,9 +125,9 @@ export default function ArticleList() {
       {articles.allIds.map(id => {
         const inBasket = basket.includes(id);
         return (
-          <Article 
+          <Article
             key={id}
-            data={articles.byId[id]} 
+            data={articles.byId[id]}
             onAddArticleToBasket={() => addToBasket(id)}
             disable={inBasket}
           />
