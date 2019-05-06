@@ -74,15 +74,3 @@ export const TinyButton = styled(GenericButton)`
     background-color: ${Colors.white};
   }
 `;
-
-export const Header = styled.div`
-  font-family: "Leckerli One", cursive;
-  ${props =>
-    props.size === "lg"
-      ? css`
-          font-size: 30px;
-        `
-      : css`
-          font-size: 20px;
-        `};
-`;

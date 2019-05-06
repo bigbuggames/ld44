@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { Colors } from "GlobalStyle";
-import { Button, Header } from "../Elements";
+import { Button } from "../Elements";
 
 import Basket from "./Basket";
 import ArticleList from "./Article";

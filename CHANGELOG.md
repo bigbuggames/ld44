@@ -1,5 +1,6 @@
 ### 1.2.5
 
+- _refactor_ Remove unused Header component
 - _refactor_ Add jest formatting and husky hook
 - _refactor_ Change to monorepo architecture
 

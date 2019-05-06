@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 import { Colors } from "GlobalStyle";
 import { useArticles } from "context/articles";
 import { useBasket } from "context/basket";
-import { Button, SmallButton, TinyButton, Header } from "../Elements";
+import { Button, SmallButton, TinyButton } from "../Elements";
 
 const BasketList = styled.ul`
   padding-left: 0;
