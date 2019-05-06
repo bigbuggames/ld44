@@ -1,3 +1,7 @@
+### 1.2.5
+
+- *refactor* Change to monorepo architecture
+
 ### 1.2.4
 
 - *bugfix* Fix removing items from the basket
